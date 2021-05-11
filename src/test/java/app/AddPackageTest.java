@@ -17,8 +17,8 @@ public class AddPackageTest {
 		public void addPackageTest() {
 			LocalDate startDate;
 			LocalDate endDate;
-			startDate=LocalDate.of(2021, 05, 10);
-			endDate=LocalDate.of(2021, 05, 15);
+			startDate=LocalDate.of(2021, 05, 12);
+			endDate=LocalDate.of(2021, 05, 17);
 			TourPackageDetails packages=new TourPackageDetails("Dubai",15000,5,startDate,endDate);
 			boolean isvalidPackage=Packages.addPackage(packages);
 			assertEquals(true,isvalidPackage);
@@ -58,7 +58,7 @@ public class AddPackageTest {
 			LocalDate endDate;
 			startDate=LocalDate.of(2020, 05, 10);
 			endDate=LocalDate.of(2021, 05, 15);
-			TourPackageDetails packages=new TourPackageDetails("Maldives",15000,0,startDate,endDate);
+			TourPackageDetails packages=new TourPackageDetails("Maldives",20000,0,startDate,endDate);
 			boolean isvalidPackage=Packages.addPackage(packages);
 			assertFalse(isvalidPackage);
 		}
@@ -82,9 +82,9 @@ public class AddPackageTest {
 		public void addPackageTest5() {
 			LocalDate startDate;
 			LocalDate endDate;
-			startDate=LocalDate.of(2021, 05, 10);
-			endDate=LocalDate.of(2021, 05, 15);
-			TourPackageDetails packages=new TourPackageDetails("Germany",20000,5,startDate,endDate);
+			startDate=LocalDate.of(2021, 05, 12);
+			endDate=LocalDate.of(2021, 05, 17);
+			TourPackageDetails packages=new TourPackageDetails("Germany",15000,5,startDate,endDate);
 			boolean isvalidPackage=Packages.addPackage(packages);
 			assertTrue(isvalidPackage);
 		}

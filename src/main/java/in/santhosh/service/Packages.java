@@ -7,7 +7,12 @@ import in.santhosh.model.TourPackageDetails;
 import in.santhosh.validator.PackageValidator;
 
 public class Packages {
-	private static List<TourPackageDetails> packageList = new ArrayList<TourPackageDetails>();
+	
+	private Packages()
+	{
+		
+	}
+	private static List<TourPackageDetails> packageList = new ArrayList<>();
 
 	/**
 	 * This method adds Packages
@@ -20,9 +25,7 @@ public class Packages {
 		if (PackageValidator.validatePackage(packages)) {
 			packageList.add(packages);
 			isValidPackage=true;
-		} else {
-			System.out.println("please enter all fields correctly");
-		}
+		} 
 		return isValidPackage;
 	}
 
