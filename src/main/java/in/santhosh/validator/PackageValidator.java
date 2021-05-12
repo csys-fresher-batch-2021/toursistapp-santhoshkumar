@@ -7,7 +7,13 @@ public class PackageValidator {
 	{
 		
 	}
+	/**
+	 * This method checks whether it is a valid package
+	 * @param packages
+	 * @return
+	 */
 	public static boolean validatePackage(TourPackageDetails packages) {
+		
 		boolean isValidPackage = true;
 		if (!Validation.stringValidation(packages.getPackageName())) {
 			isValidPackage = false;

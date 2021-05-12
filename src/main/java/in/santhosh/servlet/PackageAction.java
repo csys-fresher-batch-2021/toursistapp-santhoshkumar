@@ -1,19 +1,26 @@
-<%@page import="in.santhosh.service.Packages"%>
-<%@page import="java.time.LocalDate"%>
-<%@page import="in.santhosh.model.TourPackageDetails"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	<jsp:include page="header.jsp"></jsp:include>
-	<main class="container-fluid">
+package in.santhosh.servlet;
 
-		<%
+import java.io.IOException;
+import java.time.LocalDate;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import in.santhosh.model.TourPackageDetails;
+import in.santhosh.service.Packages;
+
+/**
+ * Servlet implementation class PackageAction
+ */
+@WebServlet("/PackageAction")
+public class PackageAction extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		LocalDate startDate, endDate;
 		String country = request.getParameter("countryName");
 		int price = Integer.parseInt(request.getParameter("packagePrice"));
@@ -31,12 +38,8 @@
 			String message = "Invalid Details";
 			response.sendRedirect("AddPackage.jsp?errorMessage=" + message);
 
-			//response.sendRedirect("AddPackage.jsp?errorMessage=" + message);
 		}
-		%>
+	}
 
 
-	</main>
-
-</body>
-</html>
+}

@@ -11,45 +11,25 @@ public class TourPackageDetails {
 	private int numberOfDays;
 	private LocalDate startDate;
 	private LocalDate endDate;
-	
+
 	public String getPackageName() {
 		return packageName;
-	}
-
-	public void setPackageName(String packageName) {
-		this.packageName = packageName;
 	}
 
 	public int getPackagePrice() {
 		return packagePrice;
 	}
 
-	public void setPackagePrice(int packagePrice) {
-		this.packagePrice = packagePrice;
-	}
-
 	public int getNumberOfDays() {
 		return numberOfDays;
-	}
-
-	public void setNumberOfDays(int numberOfDays) {
-		this.numberOfDays = numberOfDays;
 	}
 
 	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-
 	public LocalDate getEndDate() {
 		return endDate;
-	}
-
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
 	}
 
 	public TourPackageDetails(String packageName, int packagePrice, int numberOfDays, LocalDate startDate,
