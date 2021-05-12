@@ -18,13 +18,27 @@ import in.santhosh.service.Packages;
 @WebServlet("/PackageAction")
 public class PackageAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		LocalDate startDate, endDate;
+
+	@Override
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		LocalDate startDate;
+		LocalDate endDate;
+		int price = 0;
+		int days = 0;
 		String country = request.getParameter("countryName");
-		int price = Integer.parseInt(request.getParameter("packagePrice"));
-		int days = Integer.parseInt(request.getParameter("days"));
+		try {
+			price = Integer.parseInt(request.getParameter("packagePrice"));
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid values");
+		}
+		try {
+			days = Integer.parseInt(request.getParameter("days"));
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid values");
+		}
 		startDate = LocalDate.parse(request.getParameter("startDate"));
 		endDate = LocalDate.parse(request.getParameter("endDate"));
 
@@ -40,6 +54,5 @@ public class PackageAction extends HttpServlet {
 
 		}
 	}
-
 
 }
