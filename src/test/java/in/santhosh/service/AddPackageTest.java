@@ -1,4 +1,4 @@
-package app;
+package in.santhosh.service;
 
 import static org.junit.Assert.*;
 

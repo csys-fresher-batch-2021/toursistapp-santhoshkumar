@@ -12,7 +12,7 @@ public class Packages {
 	{
 		
 	}
-	private static List<TourPackageDetails> packageList = new ArrayList<>();
+	private final static List<TourPackageDetails> packageList = new ArrayList<>();
 
 	/**
 	 * This method adds Packages
