@@ -7,12 +7,12 @@ import in.santhosh.model.TourPackageDetails;
 import in.santhosh.validator.PackageValidator;
 
 public class Packages {
-	
-	private Packages()
-	{
-		
+
+	private Packages() {
+
 	}
-	private final static List<TourPackageDetails> packageList = new ArrayList<>();
+
+	private static final List<TourPackageDetails> packageList = new ArrayList<>();
 
 	/**
 	 * This method adds Packages
@@ -21,12 +21,12 @@ public class Packages {
 	 */
 
 	public static boolean addPackage(TourPackageDetails packages) {
-		boolean isValidPackage=false;
+		boolean isValidPackage = false;
 		if (PackageValidator.validatePackage(packages)) {
 			packageList.add(packages);
-			isValidPackage=true;
-		} 
+			isValidPackage = true;
+		}
 		return isValidPackage;
 	}
-	
+
 }

@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Validation {
-	private Validation()
-	{
-		
+	private Validation() {
+
 	}
+
 	static LocalDate date = LocalDate.now();
 	static LocalTime time = LocalTime.now();
 
