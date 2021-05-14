@@ -2,7 +2,7 @@ package in.santhosh.model;
 
 import java.time.LocalDate;
 
-public class TourPackageDetails {
+public class TourPackageDetail {
 	/**
 	 * This class has package details
 	 */
@@ -32,7 +32,7 @@ public class TourPackageDetails {
 		return endDate;
 	}
 
-	public TourPackageDetails(String packageName, int packagePrice, int numberOfDays, LocalDate startDate,
+	public TourPackageDetail(String packageName, int packagePrice, int numberOfDays, LocalDate startDate,
 			LocalDate endDate) {
 		super();
 		this.packageName = packageName;

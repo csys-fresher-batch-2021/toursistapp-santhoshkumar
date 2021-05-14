@@ -1,6 +1,7 @@
 package in.santhosh.validator;
 
-import in.santhosh.model.TourPackageDetails;
+import in.santhosh.model.TourPackageDetail;
+import in.santhosh.service.Packages;
 
 public class PackageValidator {
 	private PackageValidator() {
@@ -13,8 +14,7 @@ public class PackageValidator {
 	 * @param packages
 	 * @return
 	 */
-	public static boolean validatePackage(TourPackageDetails packages) {
-
+	public static boolean validatePackage(TourPackageDetail packages) {
 		boolean isValidPackage = true;
 		if (!Validation.stringValidation(packages.getPackageName())) {
 			isValidPackage = false;
@@ -29,6 +29,22 @@ public class PackageValidator {
 			isValidPackage = false;
 		}
 		return isValidPackage;
+	}
+
+	public static boolean existsingPackage(TourPackageDetail packages) {
+		boolean isExistPackage = true;
+		for (TourPackageDetail packageDetails : Packages.getPackagelist()) {
+			if (packageDetails.getPackageName().equals(packages.getPackageName())
+					&& packageDetails.getPackagePrice() == packages.getPackagePrice()
+					&& packageDetails.getNumberOfDays() == packages.getNumberOfDays()
+					&& packageDetails.getStartDate().equals(packages.getStartDate())
+					&& packageDetails.getEndDate().equals(packages.getEndDate())) {
+				isExistPackage = false;
+				break;
+			}
+
+		}
+		return isExistPackage;
 	}
 
 }

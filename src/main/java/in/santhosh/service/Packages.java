@@ -3,7 +3,7 @@ package in.santhosh.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.santhosh.model.TourPackageDetails;
+import in.santhosh.model.TourPackageDetail;
 import in.santhosh.validator.PackageValidator;
 
 public class Packages {
@@ -12,7 +12,7 @@ public class Packages {
 
 	}
 
-	private static final List<TourPackageDetails> packageList = new ArrayList<>();
+	private static final List<TourPackageDetail> packageList = new ArrayList<>();
 
 	/**
 	 * This method adds Packages
@@ -20,13 +20,26 @@ public class Packages {
 	 * @param packages
 	 */
 
-	public static boolean addPackage(TourPackageDetails packages) {
+	public static boolean addPackage(TourPackageDetail packages) {
 		boolean isValidPackage = false;
 		if (PackageValidator.validatePackage(packages)) {
-			packageList.add(packages);
+			getPackagelist().add(packages);
 			isValidPackage = true;
 		}
 		return isValidPackage;
+	}
+
+	/**
+	 * This method display all the packages
+	 * 
+	 * @return
+	 */
+	public static List<TourPackageDetail> displayPackages() {
+		return getPackagelist();
+	}
+
+	public static List<TourPackageDetail> getPackagelist() {
+		return packageList;
 	}
 
 }
