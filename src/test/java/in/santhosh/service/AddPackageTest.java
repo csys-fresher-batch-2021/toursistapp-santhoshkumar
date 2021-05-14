@@ -16,7 +16,7 @@ public class AddPackageTest {
 	public void addPackageTestWithCorrectDetails() {
 		LocalDate startDate;
 		LocalDate endDate;
-		startDate = LocalDate.of(2021, 05, 13);
+		startDate = LocalDate.of(2021, 05, 15);
 		endDate = LocalDate.of(2021, 05, 17);
 		TourPackageDetail packages = new TourPackageDetail("Dubai", 15000, 5, startDate, endDate);
 		boolean isvalidPackage = Packages.addPackage(packages);
@@ -86,7 +86,7 @@ public class AddPackageTest {
 	public void addPackageTestWithCorrectDetails2(){
 		LocalDate startDate;
 		LocalDate endDate;
-		startDate = LocalDate.of(2021, 05, 13);
+		startDate = LocalDate.of(2021, 05, 15);
 		endDate = LocalDate.of(2021, 05, 17);
 		TourPackageDetail packages = new TourPackageDetail("Germany", 15000, 5, startDate, endDate);
 		boolean isvalidPackage = Packages.addPackage(packages);
