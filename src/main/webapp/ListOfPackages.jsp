@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -14,14 +14,15 @@
 	<main class="container-fluid">
 		<h3>List of packages</h3>
 		<table class="table table-bordered">
+		<caption>List all the packages with details</caption>
 			<thead>
 				<tr>
-					<th>S.No</th>
-					<th>Country Name</th>
-					<th>Package Price</th>
-					<th>Days</th>
-					<th>Journey Start Date</th>
-					<th>Journey End Date</th>
+					<th scope="col">S.No</th>
+					<th scope="col">Country Name</th>
+					<th scope="col">Package Price</th>
+					<th scope="col">Days</th>
+					<th scope="col">Journey Start Date</th>
+					<th scope="col">Journey End Date</th>
 
 				</tr>
 				<%

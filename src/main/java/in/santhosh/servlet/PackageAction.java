@@ -50,7 +50,6 @@ public class PackageAction extends HttpServlet {
 				if (Validation.differenceBetweenDate(startDate, endDate) == days) {
 					boolean isvalidPackage = Packages.addPackage(packages);
 					if (isvalidPackage) {
-						String infoMessage = "Package added successfully";
 						response.sendRedirect("ListOfPackages.jsp");
 					} else {
 						String message = "Invalid Details";
