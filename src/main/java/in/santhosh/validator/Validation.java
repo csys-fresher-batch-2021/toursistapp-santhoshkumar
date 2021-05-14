@@ -2,14 +2,12 @@ package in.santhosh.validator;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
 
 public class Validation {
 	private Validation() {
 
 	}
-
-	static LocalDate date = LocalDate.now();
-	static LocalTime time = LocalTime.now();
 
 	/**
 	 * This method validates string
@@ -39,6 +37,7 @@ public class Validation {
 	 * @return
 	 */
 	public static boolean dateValidation(LocalDate validateDate) {
+		LocalDate date = LocalDate.now();
 		boolean isValidStartDate = true;
 		if (validateDate.isBefore(date)) {
 			isValidStartDate = false;
@@ -70,6 +69,7 @@ public class Validation {
 	 * @return
 	 */
 	public static boolean timeValidation(LocalTime flightTime) {
+		LocalTime time = LocalTime.now();
 		boolean isValidTime = true;
 		if (flightTime.isBefore(time)) {
 			isValidTime = false;
@@ -86,6 +86,19 @@ public class Validation {
 			isValidNumberOfDays = false;
 		}
 		return isValidNumberOfDays;
+
+	}
+
+	/**
+	 * This method calculate the difference between two days
+	 * 
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
+	public static int differenceBetweenDate(LocalDate startDate, LocalDate endDate) {
+		Period difference = Period.between(startDate, endDate);
+		return difference.getDays();
 
 	}
 

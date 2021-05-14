@@ -19,9 +19,26 @@
 			out.println("<font color='green'>" + infoMessage + "</font>");
 		}
 		%>
-		<form action="PackageAction">
-		<label for="countryName"><strong>Country name</strong></label><br>
-		<input type="text" name="countryName" placeholder="Enter country name" autofocus required>
+		<%
+		String existsMessage=request.getParameter("existsMessage");
+		if(existsMessage != null){
+			out.println("<font color='red'>" + existsMessage + "</font>");
+		}
+		%>
+		<%
+		String invalidDate=request.getParameter("invalidDate");
+		if(invalidDate != null){
+			out.println("<font color='red'>" + invalidDate + "</font>");
+		}
+		%>
+		<form action="AddPackageAction">
+		<label for="countryName"><strong>Country Name</strong></label><br>
+		<select name="countryName">
+		  <option value="">Select a country</option>
+		  <option value="Dubai">Dubai</option>
+		  <option value="Maldives">Maldives</option>
+		  <option value="Germany">Germany</option>
+		</select>
 		<br>
 		<label for="packagePrice"><strong>Package price</strong></label><br>
 		<input type="number" name="packagePrice" placeholder="Enter the package price" min=10000 required>

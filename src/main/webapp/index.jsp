@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>MyApp</title>
+<title>Tourist Management App</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>

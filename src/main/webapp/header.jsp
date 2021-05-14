@@ -17,6 +17,9 @@
       <li class="nav-item">
         <a class="nav-link" href="AddPackage.jsp">Add Packages</a>
       </li>
+       <li>
+       <a class="nav-link" href="ListOfPackages.jsp">List Packages</a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
         <div class="dropdown-menu" aria-labelledby="dropdownId">

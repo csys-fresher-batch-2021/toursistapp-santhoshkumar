@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import in.santhosh.model.TourPackageDetails;
+import in.santhosh.model.TourPackageDetail;
 import in.santhosh.service.Packages;
+import in.santhosh.validator.PackageValidator;
+import in.santhosh.validator.Validation;
 
 /**
  * Servlet implementation class PackageAction
  */
-@WebServlet("/PackageAction")
+@WebServlet("/AddPackageAction")
 public class PackageAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -42,16 +44,29 @@ public class PackageAction extends HttpServlet {
 		startDate = LocalDate.parse(request.getParameter("startDate"));
 		endDate = LocalDate.parse(request.getParameter("endDate"));
 
-		TourPackageDetails packages = new TourPackageDetails(country, price, days, startDate, endDate);
-		boolean isvalidPackage = Packages.addPackage(packages);
-
-		if (isvalidPackage) {
-			String infoMessage = "Package added successfully";
-			response.sendRedirect("AddPackage.jsp?infoMessage=" + infoMessage);
-		} else {
-			String message = "Invalid Details";
-			response.sendRedirect("AddPackage.jsp?errorMessage=" + message);
-
+		TourPackageDetail packages = new TourPackageDetail(country, price, days, startDate, endDate);
+		try {
+			if (PackageValidator.existsingPackage(packages)) {
+				if (Validation.differenceBetweenDate(startDate, endDate) == days) {
+					boolean isvalidPackage = Packages.addPackage(packages);
+					if (isvalidPackage) {
+						String infoMessage = "Package added successfully";
+						response.sendRedirect("ListOfPackages.jsp");
+					} else {
+						String message = "Invalid Details";
+						response.sendRedirect("AddPackage.jsp?errorMessage=" + message);
+					}
+				} else {
+					String invalidDate = "Enter start and end date correctly";
+					response.sendRedirect("AddPackage.jsp?invalidDate=" + invalidDate);
+				}
+			} else {
+				String existsMessage = "Package already exists";
+				response.sendRedirect("AddPackage.jsp?existsMessage=" + existsMessage);
+			}
+		} catch (RuntimeException e) {
+			String message = e.getMessage();
+			response.sendRedirect("AddPackage.jsp?message=" + message);
 		}
 	}
 
