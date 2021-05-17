@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE>
+<html lang="en">
 <head>
 <title>Tourist Management App</title>
 </head>
