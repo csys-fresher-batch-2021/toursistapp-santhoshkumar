@@ -22,7 +22,6 @@ public class UserValidation {
 			if (mobileNumberString.length() != mobileNumerLength
 					|| mobileNumberString.charAt(0) < firstCharacterForMobileNumber
 					|| !(mobileNumberString.charAt(index) >= '0' && mobileNumberString.charAt(index) <= '9')) {
-				System.out.println("Invalid login credentials");
 				validMobileNumber = false;
 			}
 		}
@@ -39,7 +38,6 @@ public class UserValidation {
 		int passwordLength = 8;
 		boolean validPassword = true;
 		if (password.trim().length() < passwordLength || !(password.charAt(0) >= 'A' && password.charAt(0) <= 'Z')) {
-			System.out.println("Enter password with Atleast 8 character and the first letter should be captial");
 			validPassword = false;
 		}
 		return validPassword;
