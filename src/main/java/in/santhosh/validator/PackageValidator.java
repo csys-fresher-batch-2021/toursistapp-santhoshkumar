@@ -30,6 +30,11 @@ public class PackageValidator {
 		}
 		return isValidPackage;
 	}
+	/**
+	 * This method is used to check whether the package is already exists
+	 * @param packages
+	 * @return
+	 */
 
 	public static boolean existsingPackage(TourPackageDetail packages) {
 		boolean isExistPackage = true;

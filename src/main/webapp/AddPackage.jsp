@@ -31,7 +31,7 @@
 			out.println("<font color='red'>" + invalidDate + "</font>");
 		}
 		%>
-		<form action="AddPackageAction">
+		<form action="AddPackageAction" >
 		<label for="countryName"><strong>Country Name</strong></label><br>
 		<select name="countryName">
 		  <option value="">Select a country</option>
