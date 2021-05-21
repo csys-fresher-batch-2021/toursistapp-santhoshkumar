@@ -38,6 +38,9 @@
 		  <option value="Dubai">Dubai</option>
 		  <option value="Maldives">Maldives</option>
 		  <option value="Germany">Germany</option>
+		  <option value="Singapore">Singapore</option>
+		  <option value="Malaysia">Malaysia</option>
+		  <option value="Manali">Manali</option>
 		</select>
 		<br>
 		<label for="packagePrice"><strong>Package price</strong></label><br>

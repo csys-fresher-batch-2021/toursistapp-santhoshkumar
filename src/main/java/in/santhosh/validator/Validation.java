@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Period;
 
+import in.santhosh.exception.ValidationException;
+
 public class Validation {
 	private Validation() {
 
@@ -19,11 +21,11 @@ public class Validation {
 	public static boolean stringValidation(String validateString) {
 		boolean isValidString = true;
 		if (validateString.equals(" ") || validateString.equals("")) {
-			isValidString = false;
+			throw new ValidationException("Entered value is null");
 		}
 		for (int index = 0; index < validateString.length(); index++) {
 			if (validateString.charAt(index) >= '0' && validateString.charAt(index) <= '9') {
-				isValidString = false;
+				throw new ValidationException("Entered value contains number");
 			}
 		}
 
@@ -40,7 +42,7 @@ public class Validation {
 		LocalDate date = LocalDate.now();
 		boolean isValidStartDate = true;
 		if (validateDate.isBefore(date)) {
-			isValidStartDate = false;
+			throw new ValidationException("Enter start date is before current date");
 		}
 		return isValidStartDate;
 
@@ -56,7 +58,8 @@ public class Validation {
 	public static boolean dateValidationEnd(LocalDate startDate, LocalDate validateDate) {
 		boolean isValidateEndDate = true;
 		if (validateDate.isBefore(startDate)) {
-			isValidateEndDate = false;
+			throw new ValidationException("Entered end date is before the start date");
+
 		}
 		return isValidateEndDate;
 
@@ -72,7 +75,7 @@ public class Validation {
 		LocalTime time = LocalTime.now();
 		boolean isValidTime = true;
 		if (flightTime.isBefore(time)) {
-			isValidTime = false;
+			throw new ValidationException("Entered time is before the current time");
 		}
 		return isValidTime;
 	}
@@ -83,7 +86,7 @@ public class Validation {
 	public static boolean dayValidation(int days) {
 		boolean isValidNumberOfDays = true;
 		if (days <= 0) {
-			isValidNumberOfDays = false;
+			throw new ValidationException("Entered number of days is less than or equal to zero");
 		}
 		return isValidNumberOfDays;
 
@@ -101,6 +104,5 @@ public class Validation {
 		return difference.getDays();
 
 	}
-	
-	
+
 }
