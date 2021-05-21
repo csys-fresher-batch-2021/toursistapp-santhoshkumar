@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+import in.santhosh.exception.PackageValidationException;
+import in.santhosh.exception.ServiceException;
 import in.santhosh.model.TourPackageDetail;
 import in.santhosh.service.Packages;
 import in.santhosh.validator.PackageValidator;
@@ -50,6 +53,7 @@ public class PackageAction extends HttpServlet {
 				if (Validation.differenceBetweenDate(startDate, endDate) == days) {
 					boolean isvalidPackage = Packages.addPackage(packages);
 					if (isvalidPackage) {
+						
 						response.sendRedirect("ListOfPackages.jsp");
 					} else {
 						String message = "Invalid Details";
@@ -59,11 +63,11 @@ public class PackageAction extends HttpServlet {
 					String invalidDate = "Enter start and end date correctly";
 					response.sendRedirect("AddPackage.jsp?invalidDate=" + invalidDate);
 				}
-			} else {
+			}else {
 				String existsMessage = "Package already exists";
 				response.sendRedirect("AddPackage.jsp?existsMessage=" + existsMessage);
 			}
-		} catch (RuntimeException e) {
+		} catch (ServiceException | PackageValidationException e) {
 			String message = e.getMessage();
 			response.sendRedirect("AddPackage.jsp?message=" + message);
 		}

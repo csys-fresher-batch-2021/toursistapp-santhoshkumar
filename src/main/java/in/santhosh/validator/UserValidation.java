@@ -1,11 +1,11 @@
 package in.santhosh.validator;
 
 public class UserValidation {
-	
-	private UserValidation()
-	{
-		
+
+	private UserValidation() {
+
 	}
+
 	/**
 	 * This method is used to validate the user mobile number
 	 * 
@@ -27,7 +27,7 @@ public class UserValidation {
 		}
 		return validMobileNumber;
 	}
-	
+
 	/**
 	 * This method is used to
 	 * 
