@@ -1,4 +1,4 @@
-package in.santhosh.Dao;
+package in.santhosh.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -104,10 +104,10 @@ public class PackageDao {
 		} finally {
 			ConnectionUtil.close(pst, connection);
 		}
-		/**
-		 * This method is used to return all the package details from database
-		 */
 	}
+	/**
+	 * This method is used to return all the package details from database
+	 */
 
 	public List<TourPackageDetail> getAllPackages() {
 		Connection connection = null;

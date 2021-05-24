@@ -1,4 +1,4 @@
-<%@page import="in.santhosh.Dao.PackageDao"%>
+<%@page import="in.santhosh.dao.PackageDao"%>
 <%@page import="in.santhosh.model.TourPackageDetail"%>
 <%@page import="java.util.List"%>
 <%@page import="in.santhosh.service.Packages"%>
@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>List of packages</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -18,6 +18,9 @@
 		if (infoMessage != null) {
 			out.println("<font color='green'>" + infoMessage + "</font>");
 		}
+		%>
+		<%String role = (String)session.getAttribute("ROLE");
+		String LoginUser=(String)session.getAttribute("LOGINUSER");
 		%>
 		<h3>List of packages</h3>
 		<table class="table table-bordered">
@@ -31,6 +34,7 @@
 					<th scope="col">Journey Start Date</th>
 					<th scope="col">Journey End Date</th>
 					<th scope="col"></th>
+					
 
 				</tr>
 				<%
@@ -47,6 +51,8 @@
 					<td><%=packages.getNumberOfDays()%></td>
 					<td><%=packages.getStartDate()%></td>
 					<td><%=packages.getEndDate()%></td>
+					 <%if(role !=null && role.equalsIgnoreCase("admin")){%>
+
 					<td><a
 						href="DeletePackageAction?packageName=<%=packages.getPackageName()%>
 						&packagePrice=<%=packages.getPackagePrice()%>
@@ -55,14 +61,19 @@
 						&endDate=<%=packages.getEndDate()%>"
 						class="btn btn-danger">Delete</a>
 					</td>
+					<%} %>
+					<%if(LoginUser!=null && LoginUser.equalsIgnoreCase("user")) {%>
+					<td><a href="" class ="btn btn-primary">Book</a></td>
+					<%} %>
 				</tr>
 				<%
 				}
 				%>
 			</thead>
 		</table>
+		<%if(role !=null && role.equalsIgnoreCase("admin")){%>
 		<a href="AddPackage.jsp">Add Package</a>
-
+		<%} %>
 
 
 	</main>
