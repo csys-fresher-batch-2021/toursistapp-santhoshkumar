@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <%
 String role = (String) session.getAttribute("ROLE");
+String LoginUser=(String)session.getAttribute("LOGINUSER");
 
 %>
 
@@ -26,6 +27,11 @@ String role = (String) session.getAttribute("ROLE");
        <a class="nav-link" href="ListOfPackages.jsp">List Packages</a>
       </li>
       <%} %>
+      <%if(LoginUser!=null && LoginUser.equalsIgnoreCase("user")){ %>
+      <li>
+       <a class="nav-link" href="ListOfPackages.jsp">List Packages</a>
+      </li>
+      <%} %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
         <div class="dropdown-menu" aria-labelledby="dropdownId">
@@ -34,22 +40,31 @@ String role = (String) session.getAttribute("ROLE");
         </div>
       </li>
     </ul>
-    <%if(role==null){ %>
+    <%if(role==null && LoginUser==null){ %>
      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="AdminLogin.jsp">Login</a>
+        <a class="nav-link" href="UserLogin.jsp">UserLogin</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="AdminLogin.jsp">AdminLogin</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Register</a>
+        <a class="nav-link" href="Registration.jsp">Register</a>
       </li>
       </ul>
-      <%} else{%>
+      <%} if(role!=null){%>
      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <li class="nav-item active">
       <a class="nav-link" href="AdminLogOutAction">Log out</a>
       </li>
       </ul>
-      
+      <%} %>
+      <% if(LoginUser!=null){ %>
+       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+      <a class="nav-link" href="UserLogOutAction">Log out</a>
+      </li>
+      </ul>
       <%} %>
    
   </div>

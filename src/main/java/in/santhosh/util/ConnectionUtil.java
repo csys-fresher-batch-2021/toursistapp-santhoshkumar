@@ -11,12 +11,8 @@ public class ConnectionUtil {
 	}
 
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
-		String driverClass = "org.postgresql.Driver";
-		String url = "jdbc:postgresql://localhost/TouristManagement_db";
-		String username = "postgres";
-		String password = "sandy080899";
-		Class.forName(driverClass);
-		Connection connection = DriverManager.getConnection(url, username, password);
+		Class.forName(System.getenv("spring.datasource.driver-class-name"));
+		Connection connection = DriverManager.getConnection(System.getenv("spring.datasource.url"), System.getenv("spring.datasource.username"),System.getenv("spring.datasource.password"));
 		System.out.println("Connection Created");
 		return connection;
 	}

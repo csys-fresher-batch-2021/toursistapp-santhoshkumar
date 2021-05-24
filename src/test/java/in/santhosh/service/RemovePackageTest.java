@@ -13,7 +13,7 @@ public class RemovePackageTest {
 	
 	@Test
 	public void removePackageWithPackageNameTest1() {
-		String packageName="Germany";
+		String packageName="Dubai";
 		int packagePrice=15000;
 		int numberOfDays=5;
 		LocalDate startDate=LocalDate.of(2021, 05, 25);
@@ -30,12 +30,15 @@ public class RemovePackageTest {
 		LocalDate startDate=LocalDate.of(2021, 05, 21);
 		LocalDate endDate=LocalDate.of(2021, 05, 26);
 		TourPackageDetail packages = new TourPackageDetail(packageName,packagePrice,numberOfDays,startDate,endDate);
-		boolean removePackage = Packages.removePackage(packages);
-		assertFalse(removePackage);
+		try {
+			Packages.removePackage(packages);
+		} catch (ServiceException e) {
+			assertEquals("unable to delete package from database",e.getMessage());
+		}
 	}
 	@Test
 	public void removePackageWithPackageNameTest2() {
-		String packageName="Germany";
+		String packageName="Dubai";
 		int packagePrice=15000;
 		int numberOfDays=5;
 		LocalDate startDate=LocalDate.of(2021, 05, 25);

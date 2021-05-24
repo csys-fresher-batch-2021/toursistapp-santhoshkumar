@@ -2,7 +2,7 @@ package in.santhosh.service;
 
 import java.util.List;
 
-import in.santhosh.Dao.PackageDao;
+import in.santhosh.dao.PackageDao;
 import in.santhosh.exception.DBException;
 import in.santhosh.exception.PackageValidationException;
 import in.santhosh.exception.ServiceException;
