@@ -140,4 +140,73 @@ public class PackageDao {
 
 		return packageDetails;
 	}
+	/**
+	 * This method is used to fetch packages by country name from database
+	 * @return
+	 */
+	public List<TourPackageDetail> searchPackageByCountryName(String countryName) {
+		Connection connection = null;
+		PreparedStatement pst = null;
+
+		List<TourPackageDetail> packageDetails = new ArrayList<>();
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql = "Select * from package_detail where package_name=?";
+			pst = connection.prepareStatement(sql);
+			pst.setString(1,countryName);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				String packageName = rs.getString("package_name");
+				int packagePrice = rs.getInt("package_price");
+				int numberOfDays = rs.getInt("number_of_days");
+				LocalDate startDate = rs.getDate("start_date").toLocalDate();
+				LocalDate endDate = rs.getDate("end_date").toLocalDate();
+
+				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
+						endDate);
+				packageDetails.add(packages);
+		}
+		}catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			throw new DBException("Cannot get all the records from database");
+		} finally {
+			ConnectionUtil.close(pst, connection);
+		}
+		return packageDetails;
+	}
+	/**
+	 * This method used to fetch packages by price from database
+	 * @param price
+	 * @return
+	 */
+	public List<TourPackageDetail> searchPackageByPrice(int price) {
+		Connection connection = null;
+		PreparedStatement pst = null;
+
+		List<TourPackageDetail> packageDetails = new ArrayList<>();
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql = "Select * from package_detail where package_price=?";
+			pst = connection.prepareStatement(sql);
+			pst.setInt(1,price);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				String packageName = rs.getString("package_name");
+				int packagePrice = rs.getInt("package_price");
+				int numberOfDays = rs.getInt("number_of_days");
+				LocalDate startDate = rs.getDate("start_date").toLocalDate();
+				LocalDate endDate = rs.getDate("end_date").toLocalDate();
+
+				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
+						endDate);
+				packageDetails.add(packages);
+		}
+		}catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			throw new DBException("Cannot get all the records from database");
+		} finally {
+			ConnectionUtil.close(pst, connection);
+		}
+		return packageDetails;
+	}
 }
