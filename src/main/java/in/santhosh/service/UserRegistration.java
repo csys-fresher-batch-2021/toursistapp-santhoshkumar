@@ -24,7 +24,6 @@ public class UserRegistration {
 				validRegistration=true;
 			}
 		} catch (DBException| RegistrationValidationException e) {
-			e.printStackTrace();
 			throw new ServiceException("unable to register");
 		}
 		return validRegistration;
@@ -51,7 +50,6 @@ public class UserRegistration {
 
 				}
 			} catch (DBException e) {
-				e.printStackTrace();
 				throw new ServiceException("unable to fetch userdetail in database");
 			}
 			return isMatched;

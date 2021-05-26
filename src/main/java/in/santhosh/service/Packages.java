@@ -33,7 +33,6 @@ public class Packages {
 				isValidPackage = true;
 			}
 		} catch (DBException | PackageValidationException e) {
-			e.printStackTrace();
 			throw new ServiceException("unable to add package");
 		}
 		return isValidPackage;
@@ -81,7 +80,6 @@ public class Packages {
 				throw new ServiceException("unable to delete package from database");
 			}
 		} catch (DBException e) {
-			e.printStackTrace();
 			throw new ServiceException("Unable to delete package from database");
 		}
 		return isMatched;
@@ -102,7 +100,6 @@ public class Packages {
 			packageList=dao.searchPackageByCountryName(countryName);
 			}
 		} catch (ValidationException | DBException e) {
-			e.printStackTrace();
 			throw new ServiceException("unable to fetch package by country name");
 		}
 		return packageList;
@@ -125,7 +122,6 @@ public class Packages {
 				packageExists=true;
 			}
 		} catch (DBException e) {
-			e.printStackTrace();
 			throw new ServiceException("unable to fetch package list from database");
 		}
 		return packageExists;
@@ -148,7 +144,6 @@ public class Packages {
 				packageExists=true;
 			}
 		} catch (DBException e) {
-			e.printStackTrace();
 			throw new ServiceException("unable to fetch package list");
 		}
 		return packageExists;
@@ -168,7 +163,7 @@ public class Packages {
 			packageList=dao.searchPackageByPrice(price);
 			}
 		} catch (DBException e) {
-			e.printStackTrace();
+			
 			throw new ServiceException("unable to fetch package by package price");
 		}
 		return packageList;
