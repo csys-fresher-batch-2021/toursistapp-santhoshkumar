@@ -209,4 +209,39 @@ public class PackageDao {
 		}
 		return packageDetails;
 	}
+	/**
+	 * This method used to fetch packages by number of days from database
+	 * @param price
+	 * @return
+	 */
+	public List<TourPackageDetail> searchPackageByDays(int days){
+		Connection connection = null;
+		PreparedStatement pst = null;
+
+		List<TourPackageDetail> packageDetails = new ArrayList<>();
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql = "Select * from package_detail where number_of_days=?";
+			pst = connection.prepareStatement(sql);
+			pst.setInt(1,days);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				String packageName = rs.getString(PACKAGE_NAME);
+				int packagePrice = rs.getInt(PACKAGE_PRICE);
+				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
+				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
+				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
+
+				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
+						endDate);
+				packageDetails.add(packages);
+		}
+		}catch (ClassNotFoundException | SQLException e) {
+			throw new DBException("Cannot fetch package detail by price from database");
+		} finally {
+			ConnectionUtil.close(pst, connection);
+		}
+		return packageDetails;
+	}
+	
 }

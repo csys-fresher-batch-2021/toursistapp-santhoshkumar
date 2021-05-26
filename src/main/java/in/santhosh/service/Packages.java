@@ -168,5 +168,46 @@ public class Packages {
 		}
 		return packageList;
 	}
+	/**
+	 * This method is used to check whether the user selected days is available
+	 * @param price
+	 * @return
+	 */
+	public static boolean packageExistsByDays(int days)
+	{
+		boolean packageExists=false;
+		PackageDao dao=new PackageDao();
+		List<TourPackageDetail> packageDetail;
+		try {
+			packageDetail=dao.searchPackageByDays(days);
+			if(!packageDetail.isEmpty())
+			{
+				packageExists=true;
+			}
+		} catch (DBException e) {
+			throw new ServiceException("unable to fetch package detail");
+		}
+		return packageExists;
+		
+	}
+	/**
+	 * This method is used to search package by days 
+	 * @param days
+	 * @return
+	 */
+	public static List<TourPackageDetail> searchPackageByDays(int days)
+	{
+		PackageDao dao=new PackageDao();
+		List<TourPackageDetail> packageList = null;
+		try {
+			if(Validation.dayValidation(days)){
+			packageList=dao.searchPackageByDays(days);
+			}
+		} catch (DBException|ValidationException e) {
+			
+			throw new ServiceException("unable to fetch package by number of days");
+		}
+		return packageList;
+	}
 	
 }
