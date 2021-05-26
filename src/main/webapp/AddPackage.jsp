@@ -56,7 +56,7 @@
 		<input type="date"  name="endDate" placeholder="Journey end date" required>
 		<br>
 		<br>
-		<button type="submit" class="btn btn-primary">Add package</button>
+		<button type="submit" class="btn btn-primary">Submit</button>
 		<button  type="reset" class="btn btn-danger">Reset</button>
 		
 		</form>
