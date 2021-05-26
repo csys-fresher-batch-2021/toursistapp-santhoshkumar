@@ -14,6 +14,11 @@ import in.santhosh.model.TourPackageDetail;
 import in.santhosh.util.ConnectionUtil;
 
 public class PackageDao {
+	private static final String END_DATE = "end_date";
+	private static final String START_DATE = "start_date";
+	private static final String NUMBER_OF_DAYS = "number_of_days";
+	private static final String PACKAGE_PRICE = "package_price";
+	private static final String PACKAGE_NAME = "package_name";
 	/**
 	 * This method is use to add package into database
 	 * 
@@ -36,7 +41,6 @@ public class PackageDao {
 			pst.executeUpdate();
 
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
 			throw new DBException("Package cannot be added to the database");
 		} finally {
 			ConnectionUtil.close(pst, connection);
@@ -58,18 +62,18 @@ public class PackageDao {
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
-				String packageName = rs.getString("package_name");
-				int packagePrice = rs.getInt("package_price");
-				int numberOfDays = rs.getInt("number_of_days");
-				LocalDate startDate = rs.getDate("start_date").toLocalDate();
-				LocalDate endDate = rs.getDate("end_date").toLocalDate();
+				String packageName = rs.getString(PACKAGE_NAME);
+				int packagePrice = rs.getInt(PACKAGE_PRICE);
+				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
+				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
+				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
 
 				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
 						endDate);
 				packageDetails.add(packages);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			throw new DBException("unable to fetch records from database");
 		} finally {
 			ConnectionUtil.close(pst, connection);
 		}
@@ -99,7 +103,6 @@ public class PackageDao {
 			pst.setDate(5, endDate);
 			pst.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
 			throw new DBException("Cannot delete the package from database");
 		} finally {
 			ConnectionUtil.close(pst, connection);
@@ -121,18 +124,17 @@ public class PackageDao {
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
-				String packageName = rs.getString("package_name");
-				int packagePrice = rs.getInt("package_price");
-				int numberOfDays = rs.getInt("number_of_days");
-				LocalDate startDate = rs.getDate("start_date").toLocalDate();
-				LocalDate endDate = rs.getDate("end_date").toLocalDate();
+				String packageName = rs.getString(PACKAGE_NAME);
+				int packagePrice = rs.getInt(PACKAGE_PRICE);
+				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
+				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
+				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
 
 				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
 						endDate);
 				packageDetails.add(packages);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
 			throw new DBException("Cannot get all the records from database");
 		} finally {
 			ConnectionUtil.close(pst, connection);
@@ -156,19 +158,18 @@ public class PackageDao {
 			pst.setString(1,countryName);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
-				String packageName = rs.getString("package_name");
-				int packagePrice = rs.getInt("package_price");
-				int numberOfDays = rs.getInt("number_of_days");
-				LocalDate startDate = rs.getDate("start_date").toLocalDate();
-				LocalDate endDate = rs.getDate("end_date").toLocalDate();
+				String packageName = rs.getString(PACKAGE_NAME);
+				int packagePrice = rs.getInt(PACKAGE_PRICE);
+				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
+				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
+				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
 
 				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
 						endDate);
 				packageDetails.add(packages);
 		}
 		}catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-			throw new DBException("Cannot get all the records from database");
+			throw new DBException("Cannot fetch package detial by country name  from database");
 		} finally {
 			ConnectionUtil.close(pst, connection);
 		}
@@ -191,19 +192,18 @@ public class PackageDao {
 			pst.setInt(1,price);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
-				String packageName = rs.getString("package_name");
-				int packagePrice = rs.getInt("package_price");
-				int numberOfDays = rs.getInt("number_of_days");
-				LocalDate startDate = rs.getDate("start_date").toLocalDate();
-				LocalDate endDate = rs.getDate("end_date").toLocalDate();
+				String packageName = rs.getString(PACKAGE_NAME);
+				int packagePrice = rs.getInt(PACKAGE_PRICE);
+				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
+				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
+				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
 
 				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
 						endDate);
 				packageDetails.add(packages);
 		}
 		}catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-			throw new DBException("Cannot get all the records from database");
+			throw new DBException("Cannot fetch package detail by price from database");
 		} finally {
 			ConnectionUtil.close(pst, connection);
 		}
