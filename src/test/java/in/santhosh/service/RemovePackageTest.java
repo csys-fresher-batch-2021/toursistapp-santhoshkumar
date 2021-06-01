@@ -18,7 +18,8 @@ public class RemovePackageTest {
 		int numberOfDays=5;
 		LocalDate startDate=LocalDate.of(2021, 05, 25);
 		LocalDate endDate=LocalDate.of(2021, 05, 30);
-		TourPackageDetail packages = new TourPackageDetail(packageName,packagePrice,numberOfDays,startDate,endDate);
+		String hotelName="hilton";
+		TourPackageDetail packages = new TourPackageDetail(packageName,packagePrice,numberOfDays,startDate,endDate,hotelName);
 		boolean removePackage = Packages.removePackage(packages);
 		assertEquals(true, removePackage);
 	}
@@ -29,7 +30,8 @@ public class RemovePackageTest {
 		int numberOfDays=5;
 		LocalDate startDate=LocalDate.of(2021, 05, 21);
 		LocalDate endDate=LocalDate.of(2021, 05, 26);
-		TourPackageDetail packages = new TourPackageDetail(packageName,packagePrice,numberOfDays,startDate,endDate);
+		String hotelName="Berjaya Times Square Hotel";
+		TourPackageDetail packages = new TourPackageDetail(packageName,packagePrice,numberOfDays,startDate,endDate,hotelName);
 		try {
 			Packages.removePackage(packages);
 		} catch (ServiceException e) {
@@ -43,7 +45,8 @@ public class RemovePackageTest {
 		int numberOfDays=5;
 		LocalDate startDate=LocalDate.of(2021, 05, 25);
 		LocalDate endDate=LocalDate.of(2021, 05, 30);
-		TourPackageDetail packages = new TourPackageDetail(packageName,packagePrice,numberOfDays,startDate,endDate);
+		String hotelName="hilton";
+		TourPackageDetail packages = new TourPackageDetail(packageName,packagePrice,numberOfDays,startDate,endDate,hotelName);
 		try {
 			Packages.removePackage(packages);
 		} catch (ServiceException e) {
