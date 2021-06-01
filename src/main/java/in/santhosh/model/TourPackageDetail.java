@@ -11,6 +11,11 @@ public class TourPackageDetail {
 	private int numberOfDays;
 	private LocalDate startDate;
 	private LocalDate endDate;
+	private String hotelName;
+
+	public String getHotelName() {
+		return hotelName;
+	}
 
 	public String getPackageName() {
 		return packageName;
@@ -33,13 +38,14 @@ public class TourPackageDetail {
 	}
 
 	public TourPackageDetail(String packageName, int packagePrice, int numberOfDays, LocalDate startDate,
-			LocalDate endDate) {
+			LocalDate endDate,String hotelName) {
 		super();
 		this.packageName = packageName;
 		this.packagePrice = packagePrice;
 		this.numberOfDays = numberOfDays;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.hotelName=hotelName;
 	}
 
 	@Override

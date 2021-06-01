@@ -19,7 +19,8 @@ public class AddPackageTest {
 		LocalDate endDate;
 		startDate = LocalDate.of(2021, 05, 25);
 		endDate = LocalDate.of(2021, 05, 30);
-		TourPackageDetail packages = new TourPackageDetail("Dubai", 15000, 5, startDate, endDate);
+		String hotelName="Hilton";
+		TourPackageDetail packages = new TourPackageDetail("Dubai", 15000, 5, startDate, endDate,hotelName);
 		boolean isvalidPackage = Packages.addPackage(packages);
 		assertEquals(true, isvalidPackage);
 	}
@@ -33,7 +34,8 @@ public class AddPackageTest {
 		LocalDate endDate;
 		startDate = LocalDate.of(2021, 05, 13);
 		endDate = LocalDate.of(2021, 05, 15);
-		TourPackageDetail packages = new TourPackageDetail("000Maldives", 15000, 5, startDate, endDate);
+		String hotelName="Hilton";
+		TourPackageDetail packages = new TourPackageDetail("000Maldives", 15000, 5, startDate, endDate,hotelName);
 		try {
 			Packages.addPackage(packages);
 		} catch (Exception e) {
@@ -50,7 +52,8 @@ public class AddPackageTest {
 		LocalDate endDate;
 		startDate = LocalDate.of(2021, 05, 10);
 		endDate = LocalDate.of(2021, 05, 15);
-		TourPackageDetail packages = new TourPackageDetail("Maldives", 15000, 0, startDate, endDate);
+		String hotelName="Berjaya Times Square Hotel";
+		TourPackageDetail packages = new TourPackageDetail("Maldives", 15000, 0, startDate, endDate,hotelName);
 		try {
 			Packages.addPackage(packages);
 		} catch (ServiceException e) {
@@ -67,7 +70,8 @@ public class AddPackageTest {
 		LocalDate endDate;
 		startDate = LocalDate.of(2020, 05, 10);
 		endDate = LocalDate.of(2021, 05, 15);
-		TourPackageDetail packages = new TourPackageDetail("Maldives", 20000, 0, startDate, endDate);
+		String hotelName="Berjaya Times Square Hotel";
+		TourPackageDetail packages = new TourPackageDetail("Maldives", 20000, 0, startDate, endDate,hotelName);
 		try {
 			Packages.addPackage(packages);
 		} catch (ServiceException e) {
@@ -84,7 +88,8 @@ public class AddPackageTest {
 		LocalDate endDate;
 		startDate = LocalDate.of(2021, 05, 13);
 		endDate = LocalDate.of(2021, 05, 06);
-		TourPackageDetail packages = new TourPackageDetail("Maldives", 15000, 0, startDate, endDate);
+		String hotelName="Berjaya Times Square Hotel";
+		TourPackageDetail packages = new TourPackageDetail("Maldives", 15000, 0, startDate, endDate,hotelName);
 		try {
 			Packages.addPackage(packages);
 		} catch (ServiceException e) {
@@ -101,7 +106,8 @@ public class AddPackageTest {
 		LocalDate endDate;
 		startDate = LocalDate.of(2021, 05, 25);
 		endDate = LocalDate.of(2021, 05, 30);
-		TourPackageDetail packages = new TourPackageDetail("Germany", 15000, 5, startDate, endDate);
+		String hotelName="hilton";
+		TourPackageDetail packages = new TourPackageDetail("Germany", 15000, 5, startDate, endDate,hotelName);
 		boolean isvalidPackage = Packages.addPackage(packages);
 		assertTrue(isvalidPackage);
 	}
@@ -112,7 +118,8 @@ public class AddPackageTest {
 		LocalDate endDate;
 		startDate = LocalDate.of(2021, 05, 13);
 		endDate = LocalDate.of(2021, 05, 18);
-		TourPackageDetail packages = new TourPackageDetail("", 20000, 5, startDate, endDate);
+		String hotelName="hilton";
+		TourPackageDetail packages = new TourPackageDetail("", 20000, 5, startDate, endDate,hotelName);
 		try {
 			Packages.addPackage(packages);
 		} catch (ServiceException e) {

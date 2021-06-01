@@ -89,7 +89,8 @@ public class ValidationTest {
 		LocalDate endDate;
 		startDate = LocalDate.of(2021, 06,15 );
 		endDate = LocalDate.of(2021, 06, 10);
-		TourPackageDetail packages1 = new TourPackageDetail("Maldives", 15000, 5, startDate, endDate);
+		String hotelName="hilton";
+		TourPackageDetail packages1 = new TourPackageDetail("Maldives", 15000, 5, startDate, endDate,hotelName);
 		boolean existingProduct=PackageValidator.existsingPackage(packages1);
 		assertTrue(existingProduct);
 	}
@@ -99,7 +100,8 @@ public class ValidationTest {
 		LocalDate endDate;
 		startDate = LocalDate.of(2021, 05,21);
 		endDate = LocalDate.of(2021, 05, 26);
-		TourPackageDetail packages1 = new TourPackageDetail("Dubai", 15000, 5, startDate, endDate);
+		String hotelName="hilton";
+		TourPackageDetail packages1 = new TourPackageDetail("Dubai", 15000, 5, startDate, endDate,hotelName);
 		boolean existingProduct=PackageValidator.existsingPackage(packages1);
 		assertFalse(existingProduct);
 	}

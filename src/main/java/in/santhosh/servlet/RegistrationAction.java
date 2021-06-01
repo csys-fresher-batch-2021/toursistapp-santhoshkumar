@@ -28,22 +28,29 @@ public class RegistrationAction extends HttpServlet {
 		
 		UserDetail user=new UserDetail(name,age,gender,mobileNumber,password,reTypePassword);
 		try {
-			if(!UserRegistration.existingUser(user))
+			if(password.equals(reTypePassword))
 			{
-				if(UserRegistration.userRegistration(user))
+				if(!UserRegistration.existingUser(user))
 				{
-					response.sendRedirect("AdminLogin.jsp");
+					if(UserRegistration.userRegistration(user))
+					{
+						response.sendRedirect("AdminLogin.jsp");
+					}
+					else {
+						String errorMessage = "Invalid Details";
+						response.sendRedirect("Registration.jsp?errorMessage=" + errorMessage);
+					}
+					
 				}
 				else {
-					String errorMessage = "Invalid Details";
-					response.sendRedirect("Registration.jsp?errorMessage=" + errorMessage);
+					String existsMessage = "Already Registered";
+					response.sendRedirect("Registration.jsp?existsMessage=" + existsMessage);
+					
 				}
-				
 			}
 			else {
-				String existsMessage = "Already Registered";
-				response.sendRedirect("Registration.jsp?existsMessage=" + existsMessage);
-				
+				String errorMessage = "Password and Retype password not matched";
+				response.sendRedirect("Registration.jsp?errorMessage=" + errorMessage);
 			}
 		} catch (ServiceException e) {
 			String message = e.getMessage();

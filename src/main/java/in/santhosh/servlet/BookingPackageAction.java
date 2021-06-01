@@ -14,15 +14,14 @@ import in.santhosh.model.TourPackageDetail;
 import in.santhosh.service.Packages;
 
 /**
- * Servlet implementation class DeletePackageAction
+ * Servlet implementation class BookingPackageAction
  */
-@WebServlet("/DeletePackageAction")
-public class DeletePackageAction extends HttpServlet {
+@WebServlet("/BookingPackageAction")
+public class BookingPackageAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+       
+@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LocalDate startDate;
 		LocalDate endDate;
 		int price = 0;
@@ -34,18 +33,18 @@ public class DeletePackageAction extends HttpServlet {
 		endDate = LocalDate.parse(request.getParameter("endDate"));
 		String hotelName=request.getParameter("hotelName");
 		TourPackageDetail packageList = new TourPackageDetail(packageName, price, days, startDate, endDate,hotelName);
-
+		
 		try {
-			boolean isMatched = Packages.removePackage(packageList);
-			if (isMatched) {
-				String infoMessage = "Removed successfully";
-				response.sendRedirect("ListOfPackages.jsp?infoMessage=" + infoMessage);
-			}
+			Packages.userSelectedPackage(packageList);
+			response.sendRedirect("BookingDetail.jsp?packageName="+packageName+"&packagePrice="+price+
+					"&NumberOfDays="+days+"&startDate="+startDate+"&endDate="+endDate+"&hotelName="+hotelName);
 		} catch (ServiceException e) {
 			String message = e.getMessage();
 			response.sendRedirect("ListOfPackages.jsp?message=" + message);
 
 		}
+		
 
 	}
+
 }

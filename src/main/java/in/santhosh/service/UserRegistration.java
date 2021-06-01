@@ -23,8 +23,13 @@ public class UserRegistration {
 				dao.addUserDetail(userDetail);
 				validRegistration=true;
 			}
-		} catch (DBException| RegistrationValidationException e) {
+		} catch (DBException e) {
 			throw new ServiceException("unable to register");
+		}
+		catch(RegistrationValidationException e)
+		{
+			String message=e.getMessage();
+			throw new ServiceException(message);
 		}
 		return validRegistration;
 		
@@ -37,12 +42,7 @@ public class UserRegistration {
 				List<UserDetail> userList=dao.getAllUser();
 				for (UserDetail user : userList) {
 
-					if (user.getName().equalsIgnoreCase(userDetail.getName())
-							&& user.getAge() == userDetail.getAge()
-							&& user.getGender().equalsIgnoreCase(userDetail.getGender())
-							&& user.getMobileNumber()==userDetail.getMobileNumber()
-							&& user.getPassword().equals(userDetail.getPassword())
-							&& user.getReTypePassword().equals(userDetail.getReTypePassword())){
+					if (user.getMobileNumber()==userDetail.getMobileNumber()){
 						isMatched = true;
 						break;
 

@@ -27,7 +27,7 @@ public class RegistrationValidation {
 			}
 		} catch (ValidationException e) {
 			e.printStackTrace();
-			throw new RegistrationValidationException("Enter all details correctly");
+			throw new RegistrationValidationException(e.getMessage());
 		}
 		return isValidRegistration;
 	}

@@ -27,9 +27,7 @@
 		<button  type="reset" class="btn btn-danger">Reset</button>
 	</form>
 	
-	
-	
-	
+
 </main>
 </body>
 </html>

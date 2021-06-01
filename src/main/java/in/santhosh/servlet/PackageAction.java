@@ -46,8 +46,9 @@ public class PackageAction extends HttpServlet {
 		}
 		startDate = LocalDate.parse(request.getParameter("startDate"));
 		endDate = LocalDate.parse(request.getParameter("endDate"));
+		String hotelName=request.getParameter("hotelName");
 
-		TourPackageDetail packages = new TourPackageDetail(country, price, days, startDate, endDate);
+		TourPackageDetail packages = new TourPackageDetail(country, price, days, startDate, endDate,hotelName);
 		try {
 			if (PackageValidator.existsingPackage(packages)) {
 				if (Validation.differenceBetweenDate(startDate, endDate) == days) {

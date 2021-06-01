@@ -32,6 +32,12 @@ String LoginUser=(String)session.getAttribute("LOGINUSER");
        <li>
        <a class="nav-link" href="ListOfFlight.jsp">List of flights</a>
       </li>
+        <li>
+       <a class="nav-link" href="AddImages.jsp">Add Images</a>
+      </li>
+        <li>
+       <a class="nav-link" href="ListOfEnquiry.jsp">List of enquiry</a>
+      </li>
       <%} %>
       <%if(LoginUser!=null && LoginUser.equalsIgnoreCase("user")){ %>
       <li>
