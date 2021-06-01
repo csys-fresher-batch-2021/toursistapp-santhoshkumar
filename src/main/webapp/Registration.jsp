@@ -27,7 +27,7 @@
 	<input type="text" name="name" placeholder="Enter your name" required autofocus><br>
 	
 	<label for="age"><strong>Age</strong></label><br>
-	<input type="number" name="age" placeholder="Enter your age" required><br>
+	<input type="number" name="age" placeholder="Enter your age" required min="18"><br>
 	
 	<label for="gender"><strong>Gender</strong></label><br>
 	<input type="radio" value="Male" name="gender" checked > Male   

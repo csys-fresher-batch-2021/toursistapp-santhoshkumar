@@ -1,5 +1,6 @@
 package in.santhosh.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import in.santhosh.dao.PackageDao;
@@ -7,6 +8,7 @@ import in.santhosh.exception.DBException;
 import in.santhosh.exception.PackageValidationException;
 import in.santhosh.exception.ServiceException;
 import in.santhosh.exception.ValidationException;
+import in.santhosh.model.FlightDetail;
 import in.santhosh.model.TourPackageDetail;
 import in.santhosh.validator.PackageValidator;
 import in.santhosh.validator.Validation;
@@ -61,13 +63,23 @@ public class Packages {
 		try {
 			PackageDao dao = new PackageDao();
 			List<TourPackageDetail> packageList = dao.getAllPackages();
+			for(TourPackageDetail packageL:packageList)
+			{
+				System.out.println(packageL.getPackageName());
+				System.out.println(packageL.getPackagePrice());
+				System.out.println(packageL.getNumberOfDays());
+				System.out.println(packageL.getStartDate());
+				System.out.println(packageL.getEndDate());
+				System.out.println(packageL.getHotelName());
+			}
 			for (TourPackageDetail tourPackage : packageList) {
 
 				if (tourPackage.getPackageName().equalsIgnoreCase(packageDetail.getPackageName())
 						&& tourPackage.getPackagePrice() == packageDetail.getPackagePrice()
 						&& tourPackage.getNumberOfDays() == packageDetail.getNumberOfDays()
 						&& tourPackage.getStartDate().equals(packageDetail.getStartDate())
-						&& tourPackage.getEndDate().equals(packageDetail.getEndDate())) {
+						&& tourPackage.getEndDate().equals(packageDetail.getEndDate())
+						&&tourPackage.getHotelName().equalsIgnoreCase(packageDetail.getHotelName())){
 					isMatched = true;
 					break;
 
@@ -210,4 +222,71 @@ public class Packages {
 		return packageList;
 	}
 	
+	/**
+	 * This method used to get flight detail for user selected package
+	 * @param packageDetail
+	 * @return
+	 */
+	public static List<FlightDetail> userSelectedPackage(TourPackageDetail packageDetail)
+	{
+		LocalDate date=packageDetail.getStartDate();
+		LocalDate previousDate=date.minusDays(1);
+		PackageDao dao=new PackageDao();
+		List<FlightDetail> flightDetail;
+		try {
+			flightDetail=dao.getFlightDetails(packageDetail,previousDate);
+		} catch (ServiceException e) {
+			throw new ServiceException("unable to get flight details");
+		}
+		return flightDetail;
+		
+	}
+	/**
+	 * This method is used to fetch the user selected package flight detail
+	 * @param packageDetail
+	 * @param flightStatus
+	 * @return
+	 */
+	public static List<FlightDetail> userSelectedPackageReturnFlightDetail(TourPackageDetail packageDetail,String flightStatus)
+	{
+		PackageDao dao=new PackageDao();
+		List<FlightDetail> flightReturnDetails;
+		try {
+			flightReturnDetails=dao.getFlightReturnDetails(packageDetail,flightStatus);
+		}catch (ServiceException e) {
+			throw new ServiceException("unable to get flight details");
+		}
+		return flightReturnDetails;
+	}
+	/**
+	 * This method is used to add image into the database
+	 * @param countryName
+	 * @param imageLocation
+	 */
+	public static void addPackageImage(String countryName,String imageLocation)
+	{
+		PackageDao dao=new PackageDao();
+		try {
+			dao.addImage(countryName,imageLocation);
+		} catch (DBException e) {
+			throw new ServiceException("unable to add image into the database");
+		}
+	}
+	/**
+	 * This method is used to retrieve image from database
+	 * @param countryName
+	 * @return
+	 */
+	public static byte[] retireveImage(String countryName)
+	{
+		PackageDao dao=new PackageDao();
+		byte[] image;
+		try {
+			image=dao.retireveImage(countryName);
+		} catch (DBException e) {
+			throw new ServiceException("unable to retireve image");
+			
+		}
+		return image;
+	}
 }

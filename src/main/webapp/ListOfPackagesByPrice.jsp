@@ -27,6 +27,7 @@
 					<th scope="col">Days</th>
 					<th scope="col">Journey Start Date</th>
 					<th scope="col">Journey End Date</th>
+					<th scope="col">Hotel Name</th>
 					<th scope="col"></th>
 				</tr>
 				<%
@@ -43,19 +44,15 @@
 					<td><%=packages.getNumberOfDays()%></td>
 					<td><%=packages.getStartDate()%></td>
 					<td><%=packages.getEndDate()%></td>
-					 <%if(role !=null && role.equalsIgnoreCase("admin")){%>
-
-					<td><a
-						href="DeletePackageAction?packageName=<%=packages.getPackageName()%>
-						&packagePrice=<%=packages.getPackagePrice()%>
-						&numberOfDays=<%=packages.getNumberOfDays() %>
-						&startDate=<%=packages.getStartDate()%>
-						&endDate=<%=packages.getEndDate()%>"
-						class="btn btn-danger">Delete</a>
-					</td>
-					<%} %>
+					<td><%=packages.getHotelName() %></td>
 					<%if(LoginUser!=null && LoginUser.equalsIgnoreCase("user")) {%>
-					<td><a href="" class ="btn btn-primary">Book</a></td>
+					<td><a href="BookingPackageAction?packageName=<%=packages.getPackageName()%>
+					&packagePrice=<%=packages.getPackagePrice()%>
+					&numberOfDays=<%=packages.getNumberOfDays()%>
+					&startDate=<%=packages.getStartDate()%>
+					&endDate=<%=packages.getEndDate()%>
+					&hotelName=<%=packages.getHotelName()%>"
+							class="btn btn-primary">Book</a></td>
 					<%} %>
 				</tr>
 				<%

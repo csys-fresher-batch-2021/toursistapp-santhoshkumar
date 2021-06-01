@@ -43,7 +43,7 @@ public class Flights {
 		List<FlightDetail> flightList;
 		try {
 			flightList = dao.displayFlight();
-		} catch (ServiceException e) {
+		} catch (DBException e) {
 			throw new ServiceException("unable to get all flight details");
 		}
 		return flightList;
@@ -94,11 +94,6 @@ public class Flights {
 			for(FlightDetail flights:flightList)
 			{
 				if(flights.getCountryName().equals(flightDetail.getCountryName())
-						&& flights.getFlightName().equalsIgnoreCase(flightDetail.getFlightName())
-						&& flights.getSource().equalsIgnoreCase(flightDetail.getSource())
-						&& flights.getDestination().equalsIgnoreCase(flightDetail.getDestination())
-						&& flights.getDeparture().equals(flightDetail.getDeparture())
-						&&flights.getArrival().equals(flightDetail.getArrival())
 						&&flights.getStatus().equals(flightDetail.getStatus())
 						&&flights.getJourneyDate().equals(flightDetail.getJourneyDate()))
 				{

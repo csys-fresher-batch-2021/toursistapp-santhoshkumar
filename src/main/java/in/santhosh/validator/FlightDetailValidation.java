@@ -31,8 +31,10 @@ public class FlightDetailValidation {
 			{
 				validDetail=false;
 			}
+			if(!Validation.dateValidation(flightDetail.getJourneyDate())) {
+				validDetail=false;
+			}
 		} catch (ValidationException e) {
-			e.printStackTrace();
 			throw new FlightValidationException("Enter all details correctly");
 		}
 		return validDetail;
