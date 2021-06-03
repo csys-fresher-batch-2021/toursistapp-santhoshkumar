@@ -15,13 +15,16 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<%
+		int userId = (int) session.getAttribute("LOGINUSER_ID");
+		%>
+		<%
 		String packageName = request.getParameter("packageName");
 		int packagePrice = Integer.parseInt(request.getParameter("packagePrice"));
 		int days = Integer.parseInt(request.getParameter("NumberOfDays"));
 		LocalDate startDate = LocalDate.parse(request.getParameter("startDate"));
 		LocalDate endDate = LocalDate.parse(request.getParameter("endDate"));
-		String hotelName=request.getParameter("hotelName");
-		TourPackageDetail packageDetail = new TourPackageDetail(packageName, packagePrice, days, startDate, endDate,hotelName);
+		String hotelName = request.getParameter("hotelName");
+		TourPackageDetail packageDetail = new TourPackageDetail(packageName, packagePrice, days, startDate, endDate, hotelName);
 		%>
 		<br>
 		<div class="card">
@@ -29,6 +32,10 @@
 				<p class="h3">
 					<strong><%=packageName%><%=days%>D</strong>
 				</p>
+				<p class="h4">
+					<strong><%=hotelName%></strong>
+				</p>
+				
 			</div>
 		</div>
 
@@ -147,12 +154,25 @@
 			<div class="col-4">
 				<div class="card" style="width: 18rem;">
 					<div class="card-body">
-						<h5 class="card-title">Book now</h5>
+						<h3 class="card-title">Book now</h3>
 						<h2 class="card-text"><%=packageName%></h2>
 						<h3 class="card-text">
 							<%=packagePrice%></h3>
 						<p class="card-text">per person</p>
-						<a href="#" class="btn btn-primary">Book</a>
+						<form action="PackageBookingAction">
+							<input type="hidden" name="packageName" value=<%=packageName%>>
+							<input type="hidden" name="packagePrice" value=<%=packagePrice%>>
+							<input type="hidden" name="numberOfDays" value=<%=days%>>
+							<input type="hidden" name="startDate" value=<%=startDate%>>
+							<input type="hidden" name="endDate" value=<%=endDate%>> <input
+								type="hidden" name="hotelName" value=<%=hotelName%>> <input
+								type="hidden" name="id" value=<%=userId%>> <label
+								for="person"><Strong>Person</Strong></label><br> <input
+								type="number" name="person" placeholder="number of passengers"
+								min="1" required><br> <br>
+							<button type="submit" class="btn btn-primary">Book</button>
+							<br>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -191,6 +211,25 @@
 			<li class="font-weight-normal">GST & TCS</li>
 			<li class="font-weight-normal">Transport for airport</li>
 		</ul>
+		<br> <br>
+		<div class="text-center">
+			<form action="PackageBookingAction">
+				<input type="hidden" name="packageName" value=<%=packageName%>>
+				<input type="hidden" name="packagePrice" value=<%=packagePrice%>>
+				<input type="hidden" name="numberOfDays" value=<%=days%>> <input
+					type="hidden" name="startDate" value=<%=startDate%>> <input
+					type="hidden" name="endDate" value=<%=endDate%>> <input
+					type="hidden" name="hotelName" value=<%=hotelName%>> <input
+					type="hidden" name="id" value=<%=userId%>> <label
+					for="person"><Strong>Person</Strong></label><br> <input
+					type="number" name="person" placeholder="number of passengers"
+					min="1" required><br> <br>
+				<button type="submit" class="btn btn-primary">Book</button>
+				<br> <br>
+
+			</form>
+		</div>
+
 	</main>
 </body>
 </html>

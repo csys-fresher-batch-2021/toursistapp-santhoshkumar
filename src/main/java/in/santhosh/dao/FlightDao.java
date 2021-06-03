@@ -122,7 +122,7 @@ public class FlightDao {
 	public List<FlightDetail> getAllFlight() {
 		Connection connection = null;
 		PreparedStatement pst = null;
-		List<FlightDetail> flightList=new ArrayList<>();
+		List<FlightDetail> flight=new ArrayList<>();
 		try {
 			connection=ConnectionUtil.getConnection();
 			String sql="select * from flight_detail";
@@ -139,16 +139,16 @@ public class FlightDao {
 				String status=rs.getString("status");
 				LocalDate date=rs.getDate("journey_date").toLocalDate();
 				FlightDetail flightDetail=new FlightDetail(countryName,flightName,departureTime,arrivalTime,status,source,destination,date);
-				flightList.add(flightDetail);
+				flight.add(flightDetail);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			
-			throw new DBException("unable to fetch data flight detail from database");
+			throw new DBException("unable to get all flight details from database");
 		}
 		finally {
 			ConnectionUtil.close(pst, connection);
 		}
-		return flightList;
+		return flight;
 
 }
 	

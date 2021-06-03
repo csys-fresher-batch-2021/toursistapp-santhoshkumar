@@ -17,50 +17,42 @@ import in.santhosh.service.UserRegistration;
 @WebServlet("/RegistrationAction")
 public class RegistrationAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name=request.getParameter("name");
-		int age=Integer.parseInt(request.getParameter("age"));
-		String gender=request.getParameter("gender");
-		long mobileNumber=Long.parseLong(request.getParameter("mobileNumber"));
-		String password=request.getParameter("password");
-		String reTypePassword=request.getParameter("retypepassword");
-		
-		UserDetail user=new UserDetail(name,age,gender,mobileNumber,password,reTypePassword);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-			if(password.equals(reTypePassword))
-			{
-				if(!UserRegistration.existingUser(user))
-				{
-					if(UserRegistration.userRegistration(user))
-					{
+			String name = request.getParameter("name");
+			int age = Integer.parseInt(request.getParameter("age"));
+			String gender = request.getParameter("gender");
+			long mobileNumber = Long.parseLong(request.getParameter("mobileNumber"));
+			String password = request.getParameter("password");
+			String reTypePassword = request.getParameter("retypepassword");
+			UserDetail user = new UserDetail(name, age, gender, mobileNumber, password, reTypePassword);
+			if (password.equals(reTypePassword)) {
+				if (!UserRegistration.existingUser(user)) {
+					if (UserRegistration.userRegistration(user)) {
 						response.sendRedirect("AdminLogin.jsp");
-					}
-					else {
+					} else {
 						String errorMessage = "Invalid Details";
 						response.sendRedirect("Registration.jsp?errorMessage=" + errorMessage);
 					}
-					
-				}
-				else {
+
+				} else {
 					String existsMessage = "Already Registered";
 					response.sendRedirect("Registration.jsp?existsMessage=" + existsMessage);
-					
+
 				}
-			}
-			else {
+			} else {
 				String errorMessage = "Password and Retype password not matched";
 				response.sendRedirect("Registration.jsp?errorMessage=" + errorMessage);
 			}
-		} catch (ServiceException e) {
-			String message = e.getMessage();
-			response.sendRedirect("Registration.jsp?message=" + message);
+		} catch (ServiceException | NumberFormatException e) {
+			String errorMessage = e.getMessage();
+			response.sendRedirect("Registration.jsp?errorMessage=" + errorMessage);
 			e.printStackTrace();
 		}
-		
-		
-		
-		
+
 	}
 
 }

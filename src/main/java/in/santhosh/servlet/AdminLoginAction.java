@@ -20,16 +20,20 @@ public class AdminLoginAction extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		long mobileNo = Long.parseLong(request.getParameter("mobileNumber"));
-		String password = request.getParameter("password");
-		boolean isValidLogin = AdminLogin.adminLogin(mobileNo, password);
-		if (isValidLogin) {
-			HttpSession session = request.getSession();
-			session.setAttribute("ROLE", "ADMIN");
-			response.sendRedirect("AddPackage.jsp");
-		} else {
-			String errorMessage = "Invalid login credentials";
-			response.sendRedirect("AdminLogin.jsp?errorMessage=" + errorMessage);
+		try {
+			long mobileNo = Long.parseLong(request.getParameter("mobileNumber"));
+			String password = request.getParameter("password");
+			boolean isValidLogin = AdminLogin.adminLogin(mobileNo, password);
+			if (isValidLogin) {
+				HttpSession session = request.getSession();
+				session.setAttribute("ROLE", "ADMIN");
+				response.sendRedirect("AddPackage.jsp");
+			} else {
+				String errorMessage = "Invalid login credentials";
+				response.sendRedirect("AdminLogin.jsp?errorMessage=" + errorMessage);
+			}
+		} catch (NumberFormatException e) {
+			response.sendRedirect("AdminLogin.jsp?errorMessage=" + e);
 		}
 	}
 }

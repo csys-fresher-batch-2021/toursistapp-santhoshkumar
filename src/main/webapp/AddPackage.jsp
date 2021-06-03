@@ -34,7 +34,7 @@
 		<form action="AddPackageAction" >
 		<label for="countryName"><strong>Country Name</strong></label><br>
 		<select name="countryName">
-		  <option value="">Select a country</option>
+		  <option value="" disabled >Select a country</option>
 		  <option value="Dubai">Dubai</option>
 		  <option value="Maldives">Maldives</option>
 		  <option value="Germany">Germany</option>
@@ -56,7 +56,7 @@
 		<br>
 		<label for="hotelName"><strong>Hotel Name</strong></label><br>
 		<select name="hotelName">
-		  <option value="">Select a hotel</option>
+		  <option value="" disabled>Select hotel name</option>
 		  <option value="ibis Styles Dubai Jumeira">Ibis Styles Dubai Jumeira-Dubai</option>
 		  <option value="Crowne Plaza Dubai Festival City">Crowne Plaza Dubai-Dubai</option>
 		  <option value="Angaga Island Resort Spa">Angaga Island Resort-Maldives</option>
@@ -67,12 +67,8 @@
 		  <option value=" Marina Bay Sands Singapore">Marina Bay Sands-Singapore</option>
 		  <option value=" Four Seasons Hotel Kuala Lumpur">Four Seasons Hote-Malaysia</option>
 		  <option value=" Banyan Tree Kuala Lumpur">Banyan Tree-Malaysia</option>
-		 
-		  
-		  
-		   
-		   
 		</select>
+		<br>
 		<br>
 		<button type="submit" class="btn btn-primary">Submit</button>
 		<button  type="reset" class="btn btn-danger">Reset</button>

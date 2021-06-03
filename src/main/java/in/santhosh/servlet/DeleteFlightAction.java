@@ -20,21 +20,23 @@ import in.santhosh.service.Flights;
 @WebServlet("/DeleteFlightAction")
 public class DeleteFlightAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String countryName=request.getParameter("countryName");
-		String flightName=request.getParameter("flightName");
-		String source=request.getParameter("source");
-		String destination=request.getParameter("destination");
-		LocalTime departureTime=LocalTime.parse(request.getParameter("departureTime"));
-		LocalTime arrivalTime=LocalTime.parse(request.getParameter("arrivalTime"));
-		String status=request.getParameter("status");
-		LocalDate date=LocalDate.parse(request.getParameter("journeyDate"));
-		FlightDetail flightDetail=new FlightDetail(countryName,flightName,departureTime,arrivalTime,status,source,destination,date);
-		boolean isRemoved=Flights.removeFlight(flightDetail);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String countryName = request.getParameter("countryName");
+		String flightName = request.getParameter("flightName");
+		String source = request.getParameter("source");
+		String destination = request.getParameter("destination");
+		LocalTime departureTime = LocalTime.parse(request.getParameter("departureTime"));
+		LocalTime arrivalTime = LocalTime.parse(request.getParameter("arrivalTime"));
+		String status = request.getParameter("status");
+		LocalDate date = LocalDate.parse(request.getParameter("journeyDate"));
+		FlightDetail flightDetail = new FlightDetail(countryName, flightName, departureTime, arrivalTime, status,
+				source, destination, date);
+		boolean isRemoved = Flights.removeFlight(flightDetail);
 		try {
-			if(isRemoved)
-			{
+			if (isRemoved) {
 				String infoMessage = "Removed successfully";
 				response.sendRedirect("ListOfFlight.jsp?infoMessage=" + infoMessage);
 			}
@@ -42,10 +44,7 @@ public class DeleteFlightAction extends HttpServlet {
 			String message = e.getMessage();
 			response.sendRedirect("ListOfFlight.jsp?message=" + message);
 		}
-		
 
-		
-		
 	}
 
 }

@@ -19,31 +19,33 @@ import in.santhosh.service.Packages;
 @WebServlet("/BookingPackageAction")
 public class BookingPackageAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		LocalDate startDate;
 		LocalDate endDate;
 		int price = 0;
 		int days = 0;
-		String packageName = request.getParameter("packageName");
-		price = Integer.parseInt(request.getParameter("packagePrice"));
-		days = Integer.parseInt(request.getParameter("numberOfDays"));
-		startDate = LocalDate.parse(request.getParameter("startDate"));
-		endDate = LocalDate.parse(request.getParameter("endDate"));
-		String hotelName=request.getParameter("hotelName");
-		TourPackageDetail packageList = new TourPackageDetail(packageName, price, days, startDate, endDate,hotelName);
-		
 		try {
+			String packageName = request.getParameter("packageName");
+			price = Integer.parseInt(request.getParameter("packagePrice"));
+			days = Integer.parseInt(request.getParameter("numberOfDays"));
+			startDate = LocalDate.parse(request.getParameter("startDate"));
+			endDate = LocalDate.parse(request.getParameter("endDate"));
+			String hotelName = request.getParameter("hotelName");
+			TourPackageDetail packageList = new TourPackageDetail(packageName, price, days, startDate, endDate,
+					hotelName);
+
 			Packages.userSelectedPackage(packageList);
-			response.sendRedirect("BookingDetail.jsp?packageName="+packageName+"&packagePrice="+price+
-					"&NumberOfDays="+days+"&startDate="+startDate+"&endDate="+endDate+"&hotelName="+hotelName);
-		} catch (ServiceException e) {
-			String message = e.getMessage();
-			response.sendRedirect("ListOfPackages.jsp?message=" + message);
+			response.sendRedirect(
+					"BookingDetail.jsp?packageName=" + packageName + "&packagePrice=" + price + "&NumberOfDays=" + days
+							+ "&startDate=" + startDate + "&endDate=" + endDate + "&hotelName=" + hotelName);
+		} catch (ServiceException | NumberFormatException e) {
+			String errorMessage = e.getMessage();
+			response.sendRedirect("ListOfPackages.jsp?errorMessage=" + errorMessage);
 
 		}
-		
 
 	}
 

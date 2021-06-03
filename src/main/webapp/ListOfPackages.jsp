@@ -34,20 +34,20 @@
 			%>
 			<div class="col-4">
 				<div class="card">
-					<img class="card-img-top" src="..." alt="Card image cap">
+					<img class="card-img-top" src="RetireveHotelImageAction?hotelName=<%=packages.getHotelName() %>" height="300" alt=<%=packages.getHotelName()%>>
 					<div class="card-body">
 						<p class="card-text">
-							<strong>Country Name</strong><%=packages.getPackageName()%></p>
+							<strong>Country Name : </strong><%=packages.getPackageName()%></p>
 						<p class="card-text">
-							<strong>Package Price:</strong><%=packages.getPackagePrice()%></p>
+							<strong>Package Price : </strong><%=packages.getPackagePrice()%></p>
 						<p class="card-text">
-							<strong>Number of days:</strong><%=packages.getNumberOfDays()%></p>
+							<strong>Number of days : </strong><%=packages.getNumberOfDays()%></p>
 						<p class="card-text">
-							<strong>Start date:</strong><%=packages.getStartDate()%></p>
+							<strong>Start date : </strong><%=packages.getStartDate()%></p>
 						<p class="card-text">
-							<strong>End date:</strong><%=packages.getEndDate()%></p>
+							<strong>End date : </strong><%=packages.getEndDate()%></p>
 						<p class="card-text">
-							<strong>Hotel name:</strong><%=packages.getHotelName()%></p>
+							<strong>Hotel name : </strong><%=packages.getHotelName()%></p>
 						<%
 						if (role != null && role.equalsIgnoreCase("admin")) {
 						%>
