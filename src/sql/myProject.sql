@@ -42,10 +42,25 @@ end_date date not null,
 number_of_persons int not null,
 total_price float not null);
 
+--cancelled booking table
+create table cancelled _booking(user_id int not null,
+package_name varchar(70) not null,
+package_price int not null,
+number_of_days int not null,
+start_date date not null,
+end_date date not null,
+number_of_persons int not null,
+total_price float not null,status varchar(70) default 'cancelled');
+
+
 --package images table
 create table image_detail(country_name varchar(70) not null,image bytea);
 
 --hotel image table 
 create table hotel_image(hotel_name varchar(70) not null,image bytea);
+
+--Admin table
+create table admin_detail(mobile_number bigint,user_password varchar(50));
+insert into admin_detail(mobile_number,user_password)values(9865940407,'Admin123');--use this mobile_number and password for login
 
 

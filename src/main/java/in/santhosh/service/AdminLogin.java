@@ -1,19 +1,13 @@
 package in.santhosh.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import in.santhosh.dao.AdminDao;
+import in.santhosh.exception.DBException;
+import in.santhosh.exception.ServiceException;
 import in.santhosh.validator.UserValidation;
 
 public class AdminLogin {
 	private AdminLogin() {
 
-	}
-
-	private static final Map<Long, String> adminDetail = new HashMap<>();
-	static {
-		adminDetail.put(9865940407l, "Admin123");
-		adminDetail.put(8778482577l, "Admin123");
 	}
 
 	/**
@@ -26,12 +20,14 @@ public class AdminLogin {
 
 	public static boolean adminLogin(long mobileNumber, String password) {
 		boolean validLogin = false;
-		if (UserValidation.validateMobileNumber(mobileNumber) && UserValidation.isValidatePassword(password)
-				&& adminDetail.containsKey(mobileNumber)) {
-			String adminPassword = adminDetail.get(mobileNumber);
-			if (adminPassword.equals(password)) {
-				validLogin = true;
+		if (UserValidation.validateMobileNumber(mobileNumber) && UserValidation.isValidatePassword(password)) {
+			AdminDao dao = new AdminDao();
+			try {
+				validLogin = dao.validAdminLogin(mobileNumber, password);
+			} catch (DBException e) {
+				throw new ServiceException("invalid Login credentials");
 			}
+
 		}
 		return validLogin;
 

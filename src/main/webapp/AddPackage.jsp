@@ -6,6 +6,7 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
+	
 		<h3>Add packages</h3>
 		<%
 		String errorMessage = request.getParameter("errorMessage");
@@ -74,6 +75,7 @@
 		<button  type="reset" class="btn btn-danger">Reset</button>
 		
 		</form>
+		
 		
 	</main>
 </body>
