@@ -16,24 +16,23 @@ import in.santhosh.service.Packages;
 @WebServlet("/SearchPackageByDays")
 public class SearchPackageByDays extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int days=Integer.parseInt(request.getParameter("days"));
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-			if(Packages.packageExistsByDays(days)){
-			Packages.searchPackageByDays(days);
-			response.sendRedirect("ListOfPackagesByDays.jsp?days="+days);
-			}
-			else {
+			int days = Integer.parseInt(request.getParameter("days"));
+			if (Packages.packageExistsByDays(days)) {
+				Packages.searchPackageByDays(days);
+				response.sendRedirect("ListOfPackagesByDays.jsp?days=" + days);
+			} else {
 				String existsMessage = "No packages found";
 				response.sendRedirect("SearchPackageByNumberOfDays.jsp?existsMessage=" + existsMessage);
 			}
-		} catch (ServiceException e) {
+		} catch (ServiceException | NumberFormatException e) {
 			String message = e.getMessage();
 			response.sendRedirect("SearchPackageByNumberOfDays.jsp?message=" + message);
 		}
 	}
-
 
 }

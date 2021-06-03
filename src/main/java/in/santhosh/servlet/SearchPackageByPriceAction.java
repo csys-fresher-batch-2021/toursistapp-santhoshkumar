@@ -16,28 +16,24 @@ import in.santhosh.service.Packages;
 @WebServlet("/SearchPackageByPriceAction")
 public class SearchPackageByPriceAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int packagePrice=Integer.parseInt(request.getParameter("packagePrice"));
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-			if(Packages.packageExistsByPrice(packagePrice)){
-			Packages.searchPackageByPackagePrice(packagePrice);
-			response.sendRedirect("ListOfPackagesByPrice.jsp?packagePrice="+packagePrice);
-			}
-			else {
+			int packagePrice = Integer.parseInt(request.getParameter("packagePrice"));
+			if (Packages.packageExistsByPrice(packagePrice)) {
+				Packages.searchPackageByPackagePrice(packagePrice);
+				response.sendRedirect("ListOfPackagesByPrice.jsp?packagePrice=" + packagePrice);
+			} else {
 				String existsMessage = "No packages found";
 				response.sendRedirect("SearchPackageByPrice.jsp?existsMessage=" + existsMessage);
 			}
-		} catch (ServiceException e) {
+		} catch (ServiceException | NumberFormatException e) {
 			String message = e.getMessage();
 			response.sendRedirect("SearchPackageByPrice.jsp?message=" + message);
 		}
-		
-		
-		
-	}
 
-	
+	}
 
 }

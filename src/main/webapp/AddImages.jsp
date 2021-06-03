@@ -18,7 +18,7 @@
 	<form action="AddImageAction" >
 		<label for="countryName"><strong>Country Name</strong></label><br>
 		<select name="countryName">
-		  <option value="">Select a country</option>
+		  <option value="" disabled>Select a country</option>
 		  <option value="Dubai">Dubai</option>
 		  <option value="Maldives">Maldives</option>
 		  <option value="Germany">Germany</option>

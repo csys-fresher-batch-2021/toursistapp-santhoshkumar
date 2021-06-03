@@ -24,44 +24,46 @@ public class ContactUsAction extends HttpServlet {
 	private static final String PACKAGE_NAME = "&packageName=";
 	private static final String NUMBER_OF_DAYS = "&NumberOfDays=";
 	private static final long serialVersionUID = 1L;
-       @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name=request.getParameter("name");
-		long mobileNumber=Long.parseLong(request.getParameter("mobileNumber"));
-		String countryName=request.getParameter("countryName");
-		int packagePrice=Integer.parseInt(request.getParameter("price"));
-		int numberOfDays=Integer.parseInt(request.getParameter("numberOfDays"));
-		
-		LocalDate startDate=LocalDate.parse(request.getParameter("startDate"));
-		LocalDate endDate=LocalDate.parse(request.getParameter("endDate"));
-		ContactUsDetails contactDetails=new ContactUsDetails(name,mobileNumber,countryName,packagePrice,startDate,endDate);
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-			if(!ContactDetail.existsEnquiry(contactDetails)) {
-			if(ContactDetail.contactDetail(contactDetails))
-			{
-				String infoMessage="Response sended successfully";
-				response.sendRedirect("BookingDetail.jsp?infoMessage="+infoMessage+PACKAGE_NAME+countryName+
-						PACKAGE_PRICE+packagePrice+START_DATE+startDate+END_DATE+endDate+NUMBER_OF_DAYS+numberOfDays);
-				
-			}
-			else {
-				String errorMessage = "Invalid Details";
-				response.sendRedirect("BookingDetail.jsp?errorMessage="+errorMessage+PACKAGE_NAME+countryName+
-						PACKAGE_PRICE+packagePrice+START_DATE+startDate+END_DATE+endDate+NUMBER_OF_DAYS+numberOfDays);
-				
-			}
-			}else { 
+			String name = request.getParameter("name");
+			long mobileNumber = Long.parseLong(request.getParameter("mobileNumber"));
+			String countryName = request.getParameter("countryName");
+			int packagePrice = Integer.parseInt(request.getParameter("price"));
+			int numberOfDays = Integer.parseInt(request.getParameter("numberOfDays"));
+
+			LocalDate startDate = LocalDate.parse(request.getParameter("startDate"));
+			LocalDate endDate = LocalDate.parse(request.getParameter("endDate"));
+			ContactUsDetails contactDetails = new ContactUsDetails(name, mobileNumber, countryName, packagePrice,
+					startDate, endDate);
+			if (!ContactDetail.existsEnquiry(contactDetails)) {
+				if (ContactDetail.contactDetail(contactDetails)) {
+					String infoMessage = "Response sended successfully";
+					response.sendRedirect("BookingDetail.jsp?infoMessage=" + infoMessage + PACKAGE_NAME + countryName
+							+ PACKAGE_PRICE + packagePrice + START_DATE + startDate + END_DATE + endDate
+							+ NUMBER_OF_DAYS + numberOfDays);
+
+				} else {
+					String errorMessage = "Invalid Details";
+					response.sendRedirect("BookingDetail.jsp?errorMessage=" + errorMessage + PACKAGE_NAME + countryName
+							+ PACKAGE_PRICE + packagePrice + START_DATE + startDate + END_DATE + endDate
+							+ NUMBER_OF_DAYS + numberOfDays);
+
+				}
+			} else {
 				String existsMessage = "you have already responded";
-				response.sendRedirect("BookingDetail.jsp?existsMessage="+existsMessage+PACKAGE_NAME+countryName+
-						PACKAGE_PRICE+packagePrice+START_DATE+startDate+END_DATE+endDate+NUMBER_OF_DAYS+numberOfDays);
+				response.sendRedirect("BookingDetail.jsp?existsMessage=" + existsMessage + PACKAGE_NAME + countryName
+						+ PACKAGE_PRICE + packagePrice + START_DATE + startDate + END_DATE + endDate + NUMBER_OF_DAYS
+						+ numberOfDays);
 			}
-		}catch(ServiceException e){
-			String message = e.getMessage();
-			response.sendRedirect("BookingDetail.jsp?message=" + message);
-			
+		} catch (ServiceException | NumberFormatException e) {
+			String errorMessage = e.getMessage();
+			response.sendRedirect("BookingDetail.jsp?message=" + errorMessage);
+
 		}
-		
-		
 	}
 
 }

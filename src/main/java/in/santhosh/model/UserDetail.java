@@ -5,6 +5,7 @@ public class UserDetail {
 	{
 		
 	}
+	private int id;
 	private String name;
 	private int age;
 	private String gender;
@@ -12,6 +13,9 @@ public class UserDetail {
 	private String password;
 	private String reTypePassword;
 	
+	public int getId() {
+		return id;
+	}
 	public String getReTypePassword() {
 		return reTypePassword;
 	}
@@ -33,6 +37,17 @@ public class UserDetail {
 	public UserDetail(String name, int age, String gender, long mobileNumber, String password,
 			String reTypePassword) {
 		super();
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		this.mobileNumber = mobileNumber;
+		this.password = password;
+		this.reTypePassword = reTypePassword;
+	}
+	public UserDetail(int id, String name, int age, String gender, long mobileNumber, String password,
+			String reTypePassword) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.gender = gender;

@@ -51,8 +51,8 @@ public class ContactDetail {
 	public static List<ContactUsDetails> displayAllEnquiry()
 	{
 		ContactUsDao dao=new ContactUsDao();
-			List<ContactUsDetails> enquiryDetails =dao.displayEnquiry();
-		return enquiryDetails;
+			  return dao.displayEnquiry();
+		
 	}
 
 }

@@ -24,7 +24,7 @@
 	<form action="AddFlightDetailAction">
 	<label for="countryName"><strong>Country Name</strong></label><br>
 		<select name="countryName">
-		  <option value="">Select a country</option>
+		  <option value="" disabled>Select a country</option>
 		  <option value="Dubai">Dubai</option>
 		  <option value="Maldives">Maldives</option>
 		  <option value="Germany">Germany</option>
@@ -34,11 +34,43 @@
 		</select>
 		<br>
 		<label for="flightName"><strong>Flight</strong></label><br>
-		<input type="text" name="flightName" placeholder="Enter flight name" required><br>
+		<select name="flightName">
+		  <option value="" disabled>Select a flight</option>
+		  <option value="Spice Jet">Spice Jet</option>
+		  <option value="Indigo">Indigo</option>
+		  <option value="Go Air">Go Air</option>
+		  <option value="Air Asia">Air Asia</option>
+		  <option value="Etihad Airways">Etihad Airways</option>
+		  <option value="Alliance Air">Alliance Air</option>
+		</select>
+		<br>
 		<label for="source"><strong>From</strong></label><br>
-		<input type="text" name="source" placeholder="Enter the source" required><br>
+		<select name="source">
+		  <option value="" disabled>Source</option>
+		  <option value="Coimbatore (CJB)">Coimbatore (CJB)</option>
+		  <option value="Chennai (MAA)">Chennai (MAA)</option>
+		  <option value="Delhi (DEL)">Delhi (DEL)</option>
+		  <option value="Dubai (DXB)">Dubai (DXB)</option>
+		  <option value="Kuala Lumpur (KUL)">Kuala Lumpur (KUL)</option>
+		  <option value="Male (MLE)">Male (MLE)</option>
+		  <option value="Puerto Carreno (PCR)">Puerto Carreno (PCR)</option>
+		  <option value="Singapore (XSP)">Singapore (XSP)</option>
+		</select>
+		<br>
+		
 		<label for="destination"><strong>To</strong></label><br>
-		<input type="text" name="destination" placeholder="Enter the destination" required><br>
+		<select name="destination">
+		  <option value="" disabled>destination</option>
+		  <option value="Coimbatore (CJB)">Coimbatore (CJB)</option>
+		  <option value="Chennai (MAA)">Chennai (MAA)</option>
+		  <option value="Delhi (DEL)">Delhi (DEL)</option>
+		  <option value="Dubai (DXB)">Dubai (DXB)</option>
+		  <option value="Kuala Lumpur (KUL)">Kuala Lumpur (KUL)</option>
+		  <option value="Male (MLE)">Male (MLE)</option>
+		  <option value="Puerto Carreno (PCR)">Puerto Carreno (PCR)</option>
+		  <option value="Singapore (XSP)">Singapore (XSP)</option>
+		</select>
+		<br>
 		<label for="startDate"><strong>Journey start date</strong></label><br>
 		<input type="date" name="startDate" placeholder="Journey start date" required><br>
 		<label for="depatureTime"><strong>Departure time</strong></label><br>

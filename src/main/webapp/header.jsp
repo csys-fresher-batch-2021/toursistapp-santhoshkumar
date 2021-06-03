@@ -38,6 +38,16 @@ String LoginUser=(String)session.getAttribute("LOGINUSER");
         <li>
        <a class="nav-link" href="ListOfEnquiry.jsp">List of enquiry</a>
       </li>
+      <li>
+       <a class="nav-link" href="ListOfBookings.jsp">List of bookings</a>
+      </li>
+       <li>
+       <a class="nav-link" href="ListOfCancelledBooking.jsp">Cancelled booking</a>
+      </li>
+       <li>
+       <a class="nav-link" href="AddHotelImage.jsp">Add hotel image</a>
+      </li>
+     
       <%} %>
       <%if(LoginUser!=null && LoginUser.equalsIgnoreCase("user")){ %>
       <li>
@@ -51,6 +61,9 @@ String LoginUser=(String)session.getAttribute("LOGINUSER");
       </li>
        <li>
        <a class="nav-link" href="SearchPackageByNumberOfDays.jsp">Search by days</a>
+      </li>
+        <li>
+       <a class="nav-link" href="UserBookingDetail.jsp">My Bookings</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</a>

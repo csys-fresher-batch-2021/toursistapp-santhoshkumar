@@ -396,4 +396,54 @@ public class PackageDao {
 		return imgBytes;
 
 	}
+	/**
+	 * This method is used to add hotel name
+	 * @param countryName
+	 * @param imageLocation
+	 */
+	public void addHotelImage(String hotelName, String imageLocation) {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		try {
+			connection = ConnectionUtil.getConnection();
+			File file = new File("E:\\projectimage\\" + imageLocation);
+			FileInputStream fis = new FileInputStream(file);
+			ps = connection.prepareStatement("INSERT INTO hotel_image VALUES (?, ?)");
+			ps.setString(1, hotelName);
+			ps.setBinaryStream(2, fis, file.length());
+			ps.executeUpdate();
+		} catch (ClassNotFoundException | SQLException | FileNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(ps, connection);
+		}
+	}
+	/**
+	 * This method is used to retrieve image from database
+	 * @param countryName
+	 * @return
+	 */
+	public byte[] retireveHotelImage(String hotelName) {
+		Connection connection = null;
+		Statement st = null;
+		byte[] imgBytes = null;
+		try {
+			connection = ConnectionUtil.getConnection();
+			st = connection.createStatement();
+			ResultSet rs = st.executeQuery("SELECT image FROM hotel_image WHERE hotel_name ='" + hotelName + "'");
+			if (rs != null) {
+				while (rs.next()) {
+					imgBytes = rs.getBytes(1);
+				}
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionUtil.close(st, connection);
+		}
+		return imgBytes;
+
+	}
+
 }

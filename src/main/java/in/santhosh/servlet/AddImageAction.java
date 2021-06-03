@@ -16,19 +16,19 @@ import in.santhosh.service.Packages;
 @WebServlet("/AddImageAction")
 public class AddImageAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String countryName=request.getParameter("countryName");
-		String imageLocation=request.getParameter("myfile");
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String countryName = request.getParameter("countryName");
+		String imageLocation = request.getParameter("myfile");
 		try {
 			Packages.addPackageImage(countryName, imageLocation);
 			response.sendRedirect("AddImages.jsp");
 		} catch (ServiceException e) {
-			String errorMessage="unable to add image";
+			String errorMessage = "unable to add image";
 			response.sendRedirect("AddImageAction.jsp?errorMessage=" + errorMessage);
 		}
-	
 	}
 
-	
 }
