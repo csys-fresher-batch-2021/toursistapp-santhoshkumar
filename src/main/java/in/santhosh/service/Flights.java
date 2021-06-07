@@ -86,6 +86,12 @@ public class Flights {
 
 	}
 
+	/**
+	 * This method is used to check whether admin added flight is already exists
+	 * 
+	 * @param flightDetail
+	 * @return
+	 */
 	public static boolean existingFlightDetail(FlightDetail flightDetail) {
 		boolean isExists = false;
 		try {

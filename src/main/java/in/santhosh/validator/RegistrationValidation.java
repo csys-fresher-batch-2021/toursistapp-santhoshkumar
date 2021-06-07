@@ -10,11 +10,17 @@ public class RegistrationValidation {
 	{
 		
 	}
+	/**
+	 * This method is used to validate the user details
+	 * @param userDetail
+	 * @return
+	 */
 	public static boolean validRegistration(UserDetail userDetail)
 	{
 		boolean isValidRegistration=true;
 		try {
-			if (!Validation.stringValidation(userDetail.getName()) && !Validation.stringValidation(userDetail.getGender())){
+			if (!Validation.stringValidation(userDetail.getName()) && 
+					!Validation.stringValidation(userDetail.getGender())){
 				isValidRegistration = false;
 			}
 			if(!UserValidation.validateMobileNumber(userDetail.getMobileNumber()))

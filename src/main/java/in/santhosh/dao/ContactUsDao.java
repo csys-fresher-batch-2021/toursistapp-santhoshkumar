@@ -14,6 +14,11 @@ import in.santhosh.model.ContactUsDetails;
 import in.santhosh.util.ConnectionUtil;
 
 public class ContactUsDao {
+	/**
+	 * This method is used to add contact detail into the database
+	 * 
+	 * @param details
+	 */
 	public void addContactUsDetail(ContactUsDetails details) {
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -21,7 +26,8 @@ public class ContactUsDao {
 			Date startDate = Date.valueOf(details.getStartDate());
 			Date endDate = Date.valueOf(details.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "insert into contact_detail(name,mobile_number,country_name,package_price,start_date,end_date)values(?,?,?,?,?,?)";
+			String sql = "insert into contact_detail(name,mobile_number,country_name,package_price,start_date,"
+					+ "end_date)values(?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, details.getName());
 			pst.setLong(2, details.getMobileNumber());
@@ -37,6 +43,13 @@ public class ContactUsDao {
 		}
 	}
 
+	/**
+	 * This method is used to find whether contact detail is already exists for the
+	 * same package
+	 * 
+	 * @param details
+	 * @return
+	 */
 	public boolean existsEnquiryDetail(ContactUsDetails details) {
 		boolean isExistsEnquiry = false;
 		Connection connection = null;
@@ -45,7 +58,8 @@ public class ContactUsDao {
 			Date startDate = Date.valueOf(details.getStartDate());
 			Date endDate = Date.valueOf(details.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "select name from contact_detail where name=? and mobile_number=? and country_name=? and package_price=? and start_date=? and end_date=?";
+			String sql = "select name from contact_detail where name=? and mobile_number=? and country_name=? "
+					+ "and package_price=? and start_date=? and end_date=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, details.getName());
 			pst.setLong(2, details.getMobileNumber());

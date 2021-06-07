@@ -104,21 +104,20 @@ public class Validation {
 		return difference.getDays();
 
 	}
+
 	/**
 	 * This method checks whether the package price is greater than 10000
+	 * 
 	 * @param price
 	 * @return
 	 */
-	public static boolean packagePrice(int price)
-	{
-		boolean validPackagePrice=true;
-		if(price<=10000)
-		{
-			validPackagePrice=false;
+	public static boolean packagePrice(int price) {
+		boolean validPackagePrice = true;
+		if (price <= 10000) {
+			validPackagePrice = false;
 		}
 		return validPackagePrice;
-		
-			
+
 	}
 
 }

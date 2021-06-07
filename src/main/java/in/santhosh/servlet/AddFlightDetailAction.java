@@ -20,30 +20,30 @@ import in.santhosh.service.Flights;
 @WebServlet("/AddFlightDetailAction")
 public class AddFlightDetailAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String countryName=request.getParameter("countryName");
-		String flightName=request.getParameter("flightName");
-		String source=request.getParameter("source");
-		String destination=request.getParameter("destination");
-		LocalTime departureTime=LocalTime.parse(request.getParameter("depatureTime"));
-		LocalTime arrivalTime=LocalTime.parse(request.getParameter("arrivalTime"));
-		String status=request.getParameter("status");
-		LocalDate date=LocalDate.parse(request.getParameter("startDate"));
-		FlightDetail flightDetail=new FlightDetail(countryName,flightName,departureTime,arrivalTime,status,source,destination,date);
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String countryName = request.getParameter("countryName");
+		String flightName = request.getParameter("flightName");
+		String source = request.getParameter("source");
+		String destination = request.getParameter("destination");
+		LocalTime departureTime = LocalTime.parse(request.getParameter("depatureTime"));
+		LocalTime arrivalTime = LocalTime.parse(request.getParameter("arrivalTime"));
+		String status = request.getParameter("status");
+		LocalDate date = LocalDate.parse(request.getParameter("startDate"));
+		FlightDetail flightDetail = new FlightDetail(countryName, flightName, departureTime, arrivalTime, status,
+				source, destination, date);
 		try {
-			if(!Flights.existingFlightDetail(flightDetail)) {
-			
-				if(Flights.addFlights(flightDetail))
-				{
+			if (!Flights.existingFlightDetail(flightDetail)) {
+
+				if (Flights.addFlights(flightDetail)) {
 					response.sendRedirect("ListOfFlight.jsp");
-				}
-				else {
+				} else {
 					String errorMessage = "Invalid Details";
-					response.sendRedirect("AddFlight.jsp?errorMessage=" +errorMessage);
+					response.sendRedirect("AddFlight.jsp?errorMessage=" + errorMessage);
 				}
-			}else {
+			} else {
 				String existsMessage = "Package already exists";
 				response.sendRedirect("AddFlight.jsp?existsMessage=" + existsMessage);
 			}
@@ -51,11 +51,7 @@ public class AddFlightDetailAction extends HttpServlet {
 			String message = e.getMessage();
 			response.sendRedirect("AddFlight.jsp?message=" + message);
 		}
-		
-		
-		
-		
-	}
 
+	}
 
 }

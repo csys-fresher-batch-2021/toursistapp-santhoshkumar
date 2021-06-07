@@ -17,20 +17,21 @@ import in.santhosh.service.Packages;
 @WebServlet("/RetireveImageAction")
 public class RetireveImageAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String packageName=request.getParameter("packageName");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String packageName = request.getParameter("packageName");
 		try {
-			byte []image=Packages.retireveImage(packageName);
-			OutputStream obj=response.getOutputStream();
+			byte[] image = Packages.retireveImage(packageName);
+			OutputStream obj = response.getOutputStream();
 			obj.write(image);
 		} catch (ServiceException e) {
-			String errorMessage="unable to retireve image";
+			String errorMessage = "unable to retireve image";
 			response.sendRedirect("BookingDetail.jsp?errorMessage=" + errorMessage);
-			
-		}
-		
-	}
 
+		}
+
+	}
 
 }

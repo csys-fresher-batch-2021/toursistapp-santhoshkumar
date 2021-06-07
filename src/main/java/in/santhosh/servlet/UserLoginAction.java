@@ -45,9 +45,8 @@ public class UserLoginAction extends HttpServlet {
 		} catch (ServiceException e) {
 			String message = e.getMessage();
 			response.sendRedirect("UserLogin.jsp?message=" + message);
-		}
-		catch(NumberFormatException e) {
-			response.sendRedirect("UserLogin.jsp?message=" +e);
+		} catch (NumberFormatException e) {
+			response.sendRedirect("UserLogin.jsp?message=" + e);
 		}
 
 	}

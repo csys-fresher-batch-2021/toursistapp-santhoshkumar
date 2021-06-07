@@ -14,6 +14,13 @@ public class ContactDetail {
 
 	}
 
+	/**
+	 * This method is used to add contact details into the database
+	 * 
+	 * @param details
+	 * @return
+	 */
+
 	public static boolean contactDetail(ContactUsDetails details) {
 		boolean validDetails = false;
 		try {
@@ -28,31 +35,33 @@ public class ContactDetail {
 		}
 		return validDetails;
 	}
+
 	/**
 	 * To check whether user responds exists
+	 * 
 	 * @param details
 	 * @return
 	 */
-	public static boolean existsEnquiry(ContactUsDetails details)
-	{
-		boolean isMatched=false;
-		ContactUsDao dao=new ContactUsDao();
+	public static boolean existsEnquiry(ContactUsDetails details) {
+		boolean isMatched = false;
+		ContactUsDao dao = new ContactUsDao();
 		try {
-			isMatched =dao.existsEnquiryDetail(details);
+			isMatched = dao.existsEnquiryDetail(details);
 		} catch (DBException e) {
 			e.printStackTrace();
 		}
 		return isMatched;
 	}
+
 	/**
 	 * This method is used to display all enquiry
+	 * 
 	 * @return
 	 */
-	public static List<ContactUsDetails> displayAllEnquiry()
-	{
-		ContactUsDao dao=new ContactUsDao();
-			  return dao.displayEnquiry();
-		
+	public static List<ContactUsDetails> displayAllEnquiry() {
+		ContactUsDao dao = new ContactUsDao();
+		return dao.displayEnquiry();
+
 	}
 
 }

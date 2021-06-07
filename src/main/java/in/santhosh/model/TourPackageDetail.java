@@ -38,14 +38,14 @@ public class TourPackageDetail {
 	}
 
 	public TourPackageDetail(String packageName, int packagePrice, int numberOfDays, LocalDate startDate,
-			LocalDate endDate,String hotelName) {
+			LocalDate endDate, String hotelName) {
 		super();
 		this.packageName = packageName;
 		this.packagePrice = packagePrice;
 		this.numberOfDays = numberOfDays;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.hotelName=hotelName;
+		this.hotelName = hotelName;
 	}
 
 	@Override

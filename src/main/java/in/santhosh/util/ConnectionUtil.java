@@ -7,12 +7,13 @@ import java.sql.Statement;
 
 public class ConnectionUtil {
 	private ConnectionUtil() {
-
+		//private constructor
 	}
 
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName(System.getenv("spring.datasource.driver-class-name"));
-		Connection connection = DriverManager.getConnection(System.getenv("spring.datasource.url"), System.getenv("spring.datasource.username"),System.getenv("spring.datasource.password"));
+		Connection connection = DriverManager.getConnection(System.getenv("spring.datasource.url"), 
+				System.getenv("spring.datasource.username"),System.getenv("spring.datasource.password"));
 		System.out.println("Connection Created");
 		return connection;
 	}

@@ -25,7 +25,7 @@ public class PackageDao {
 	private static final String NUMBER_OF_DAYS = "number_of_days";
 	private static final String PACKAGE_PRICE = "package_price";
 	private static final String PACKAGE_NAME = "package_name";
-	private static final String HOTEL_NAME="hotel_name";
+	private static final String HOTEL_NAME = "hotel_name";
 
 	/**
 	 * This method is use to add package into database
@@ -39,14 +39,15 @@ public class PackageDao {
 			Date startDate = Date.valueOf(packages.getStartDate());
 			Date endDate = Date.valueOf(packages.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "insert into package_detail(package_name,package_price,number_of_days,start_date,end_date,hotel_name) values(?,?,?,?,?,?)";
+			String sql = "insert into package_detail(package_name,package_price,number_of_days,start_date,end_date,"
+					+ "hotel_name) values(?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, packages.getPackageName());
 			pst.setInt(2, packages.getPackagePrice());
 			pst.setInt(3, packages.getNumberOfDays());
 			pst.setDate(4, startDate);
 			pst.setDate(5, endDate);
-			pst.setString(6,packages.getHotelName());
+			pst.setString(6, packages.getHotelName());
 			pst.executeUpdate();
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -76,10 +77,10 @@ public class PackageDao {
 				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
 				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
 				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
-				String hotelName=rs.getString(HOTEL_NAME);
+				String hotelName = rs.getString(HOTEL_NAME);
 
 				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
-						endDate,hotelName);
+						endDate, hotelName);
 				packageDetails.add(packages);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -111,7 +112,7 @@ public class PackageDao {
 			pst.setInt(3, packageDetail.getNumberOfDays());
 			pst.setDate(4, startDate);
 			pst.setDate(5, endDate);
-			pst.setString(6,packageDetail.getHotelName());
+			pst.setString(6, packageDetail.getHotelName());
 			pst.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new DBException("Cannot delete the package from database");
@@ -141,10 +142,10 @@ public class PackageDao {
 				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
 				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
 				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
-				String hotelName=rs.getString(HOTEL_NAME);
+				String hotelName = rs.getString(HOTEL_NAME);
 
 				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
-						endDate,hotelName);
+						endDate, hotelName);
 				packageDetails.add(packages);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -178,11 +179,10 @@ public class PackageDao {
 				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
 				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
 				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
-				String hotelName=rs.getString(HOTEL_NAME);
-
+				String hotelName = rs.getString(HOTEL_NAME);
 
 				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
-						endDate,hotelName);
+						endDate, hotelName);
 				packageDetails.add(packages);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -216,11 +216,10 @@ public class PackageDao {
 				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
 				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
 				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
-				String hotelName=rs.getString(HOTEL_NAME);
-
+				String hotelName = rs.getString(HOTEL_NAME);
 
 				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
-						endDate,hotelName);
+						endDate, hotelName);
 				packageDetails.add(packages);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -254,11 +253,10 @@ public class PackageDao {
 				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
 				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
 				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
-				String hotelName=rs.getString(HOTEL_NAME);
-
+				String hotelName = rs.getString(HOTEL_NAME);
 
 				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
-						endDate,hotelName);
+						endDate, hotelName);
 				packageDetails.add(packages);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -309,6 +307,14 @@ public class PackageDao {
 		return flightDetails;
 
 	}
+
+	/**
+	 * This method is used to get all return flight details
+	 * 
+	 * @param packageDetail
+	 * @param flightStatus
+	 * @return
+	 */
 
 	public List<FlightDetail> getFlightReturnDetails(TourPackageDetail packageDetail, String flightStatus) {
 		Connection connection = null;
@@ -396,8 +402,10 @@ public class PackageDao {
 		return imgBytes;
 
 	}
+
 	/**
 	 * This method is used to add hotel name
+	 * 
 	 * @param countryName
 	 * @param imageLocation
 	 */
@@ -418,8 +426,10 @@ public class PackageDao {
 			ConnectionUtil.close(ps, connection);
 		}
 	}
+
 	/**
 	 * This method is used to retrieve image from database
+	 * 
 	 * @param countryName
 	 * @return
 	 */

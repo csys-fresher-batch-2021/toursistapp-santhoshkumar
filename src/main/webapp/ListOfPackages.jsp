@@ -13,6 +13,9 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
+	
+	
+	
 		<%
 		String infoMessage = request.getParameter("infoMessage");
 		if (infoMessage != null) {

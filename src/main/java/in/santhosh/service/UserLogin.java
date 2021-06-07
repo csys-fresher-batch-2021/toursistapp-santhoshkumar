@@ -12,6 +12,13 @@ public class UserLogin {
 
 	}
 
+	/**
+	 * This method checks whether the given mobile number are matched
+	 * 
+	 * @param mobileNumber
+	 * @param password
+	 * @return
+	 */
 	public static boolean validLogin(long mobileNumber, String password) {
 		boolean validLogin;
 		try {
@@ -24,6 +31,12 @@ public class UserLogin {
 
 	}
 
+	/**
+	 * This method is used to get user detail
+	 * 
+	 * @param mobileNumber
+	 * @return
+	 */
 	public static List<UserDetail> getUserDetail(long mobileNumber) {
 		LoginDao dao = new LoginDao();
 		return dao.getallDetailsOfUser(mobileNumber);
