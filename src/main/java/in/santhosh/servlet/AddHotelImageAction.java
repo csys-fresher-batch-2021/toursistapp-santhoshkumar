@@ -16,19 +16,18 @@ import in.santhosh.service.Packages;
 @WebServlet("/AddHotelImageAction")
 public class AddHotelImageAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String hotelName=request.getParameter("hotelName");
-		String imageLocation=request.getParameter("myfile");
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String hotelName = request.getParameter("hotelName");
+		String imageLocation = request.getParameter("myfile");
 		try {
 			Packages.addHotelImage(hotelName, imageLocation);
 			response.sendRedirect("AddHotelImage.jsp");
 		} catch (ServiceException e) {
-			String errorMessage="unable to add image";
+			String errorMessage = "unable to add image";
 			response.sendRedirect("AddHotelImage.jsp?errorMessage=" + errorMessage);
 		}
 	}
-	}
-
-
+}

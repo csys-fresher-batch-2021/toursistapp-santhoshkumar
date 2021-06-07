@@ -16,17 +16,17 @@ import in.santhosh.service.Packages;
 @WebServlet("/SerachPackageByNameAction")
 public class SerachPackageByNameAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String countryName=request.getParameter("countryName");
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String countryName = request.getParameter("countryName");
 		try {
-			if(Packages.packageExistsByCountryName(countryName)) {
-			Packages.searchPackageByName(countryName);
-			response.sendRedirect("ListOfPackagesByCountry.jsp?countryName="+countryName);
-			}
-			else {
+			if (Packages.packageExistsByCountryName(countryName)) {
+				Packages.searchPackageByName(countryName);
+				response.sendRedirect("ListOfPackagesByCountry.jsp?countryName=" + countryName);
+			} else {
 				String existsMessage = "No packages found";
 				response.sendRedirect("SearchPackageByName.jsp?existsMessage=" + existsMessage);
 			}
@@ -35,7 +35,5 @@ public class SerachPackageByNameAction extends HttpServlet {
 			response.sendRedirect("SearchPackageByName.jsp?message=" + message);
 		}
 	}
-
-
 
 }

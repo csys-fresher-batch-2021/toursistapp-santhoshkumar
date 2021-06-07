@@ -14,6 +14,13 @@ public class UserRegistration {
 
 	}
 
+	/**
+	 * This method is used to validate the user registration detail and also used to
+	 * add the details into database
+	 * 
+	 * @param userDetail
+	 * @return
+	 */
 	public static boolean userRegistration(UserDetail userDetail) {
 		boolean validRegistration = false;
 		try {
@@ -31,6 +38,13 @@ public class UserRegistration {
 		return validRegistration;
 
 	}
+
+	/**
+	 * This method is used to find whether the user registered already
+	 * 
+	 * @param userDetail
+	 * @return
+	 */
 
 	public static boolean existingUser(UserDetail userDetail) {
 		boolean isMatched = false;

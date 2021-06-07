@@ -38,6 +38,7 @@
 	
 	<label for="password"><strong>Set Password</strong></label><br>
 	<input type="password" name="password" placeholder="Enter your password" required><br>
+	<p class="text-muted"><em>* First letter should be capital and length should be greater than 8</em></p>
 	
 	<label for="retypepassword"><strong>Re-type password</strong></label><br>
 	<input type="password" name="retypepassword" placeholder="Retype your password" required><br>

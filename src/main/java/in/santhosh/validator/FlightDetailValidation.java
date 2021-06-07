@@ -9,6 +9,11 @@ public class FlightDetailValidation {
 	{
 		
 	}
+	/**
+	 * This method is used to validate all flight details
+	 * @param flightDetail
+	 * @return
+	 */
 	public static boolean validFlightDetail(FlightDetail flightDetail)
 	{
 		boolean validDetail=true;

@@ -95,6 +95,12 @@ public class Booking {
 
 	}
 
+	/**
+	 * This method is used add cancel details into database
+	 * 
+	 * @param bookinDetail
+	 */
+
 	public static void addCancelBooking(BookingDetail bookinDetail) {
 		BookingDao dao = new BookingDao();
 		try {
@@ -104,6 +110,12 @@ public class Booking {
 		}
 
 	}
+
+	/**
+	 * This method is used to get all cancelled details
+	 * 
+	 * @return
+	 */
 
 	public static List<BookingDetail> listOfCancelledBooking() {
 		BookingDao dao = new BookingDao();

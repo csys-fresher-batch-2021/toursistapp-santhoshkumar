@@ -37,7 +37,8 @@ public class BookingDao {
 			Date startDate = Date.valueOf(bookingDetail.getStartDate());
 			Date endDate = Date.valueOf(bookingDetail.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "insert into booking_detail(user_id,package_name,package_price,number_of_days,start_date,end_date,number_of_persons,total_price)values(?,?,?,?,?,?,?,?)";
+			String sql = "insert into booking_detail(user_id,package_name,package_price,number_of_days,start_date,"
+					+ "end_date,number_of_persons,total_price)values(?,?,?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, bookingDetail.getId());
 			pst.setString(2, bookingDetail.getPackageName());
@@ -143,7 +144,8 @@ public class BookingDao {
 			Date startDate = Date.valueOf(bookingDetail.getStartDate());
 			Date endDate = Date.valueOf(bookingDetail.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "delete from booking_detail where user_id=? AND package_name=? AND package_price=? AND number_of_days=? AND start_date=? AND end_date=? AND number_of_persons=? AND total_price=?";
+			String sql = "delete from booking_detail where user_id=? AND package_name=? AND package_price=? AND "
+					+ "number_of_days=? AND start_date=? AND end_date=? AND number_of_persons=? AND total_price=?";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, bookingDetail.getId());
 			pst.setString(2, bookingDetail.getPackageName());
@@ -162,6 +164,12 @@ public class BookingDao {
 
 	}
 
+	/**
+	 * This method is used to add cancelled list for admin
+	 * 
+	 * @param bookingDetail
+	 */
+
 	public void addCancelBookingDetail(BookingDetail bookingDetail) {
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -169,7 +177,8 @@ public class BookingDao {
 			Date startDate = Date.valueOf(bookingDetail.getStartDate());
 			Date endDate = Date.valueOf(bookingDetail.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "insert into cancelled_booking(user_id,package_name,package_price,number_of_days,start_date,end_date,number_of_persons,total_price)values(?,?,?,?,?,?,?,?)";
+			String sql = "insert into cancelled_booking(user_id,package_name,package_price,number_of_days,start_date,"
+					+ "end_date,number_of_persons,total_price)values(?,?,?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, bookingDetail.getId());
 			pst.setString(2, bookingDetail.getPackageName());
@@ -188,11 +197,12 @@ public class BookingDao {
 		}
 
 	}
+
 	/**
-	 * This methos is used to get all cancelled list.
+	 * This method is used to get all cancelled list.
+	 * 
 	 * @return
 	 */
-
 	public List<BookingDetail> getAllCancelledList() {
 		Connection connection = null;
 		PreparedStatement pst = null;

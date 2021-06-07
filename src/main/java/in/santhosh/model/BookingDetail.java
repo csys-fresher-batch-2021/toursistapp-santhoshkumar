@@ -12,29 +12,35 @@ public class BookingDetail {
 	private int numberOfPerson;
 	private double totalPrice;
 	private String status;
-	
-	
+
 	public String getStatus() {
 		return status;
 	}
+
 	public double getTotalPrice() {
 		return totalPrice;
 	}
+
 	public String getPackageName() {
 		return packageName;
 	}
+
 	public int getPackagePrice() {
 		return packagePrice;
 	}
+
 	public int getNumberOfDays() {
 		return numberOfDays;
 	}
+
 	public LocalDate getStartDate() {
 		return startDate;
 	}
+
 	public LocalDate getEndDate() {
 		return endDate;
 	}
+
 	public BookingDetail(String packageName, int packagePrice, int numberOfDays, LocalDate startDate, LocalDate endDate,
 			int id, int numberOfPerson, double totalPrice, String status) {
 		super();
@@ -48,9 +54,11 @@ public class BookingDetail {
 		this.totalPrice = totalPrice;
 		this.status = status;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public int getNumberOfPerson() {
 		return numberOfPerson;
 	}
@@ -66,7 +74,7 @@ public class BookingDetail {
 		this.id = id;
 		this.numberOfPerson = numberOfPerson;
 	}
-	
+
 	public BookingDetail(String packageName, int packagePrice, int numberOfDays, LocalDate startDate, LocalDate endDate,
 			int id, int numberOfPerson, double totalPrice) {
 		super();
