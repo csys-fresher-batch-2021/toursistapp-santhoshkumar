@@ -39,8 +39,8 @@ public class PackageDao {
 			Date startDate = Date.valueOf(packages.getStartDate());
 			Date endDate = Date.valueOf(packages.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "insert into package_detail(package_name,package_price,number_of_days,start_date,end_date,"
-					+ "hotel_name) values(?,?,?,?,?,?)";
+			String sql = "INSERT INTO package_detail(package_name,package_price,number_of_days,start_date,end_date,"
+					+ "hotel_name)VALUES(?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, packages.getPackageName());
 			pst.setInt(2, packages.getPackagePrice());
@@ -68,7 +68,7 @@ public class PackageDao {
 		PreparedStatement pst = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select* from package_detail";
+			String sql = "SELECT* FROM package_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
@@ -105,7 +105,7 @@ public class PackageDao {
 			Date startDate = Date.valueOf(packageDetail.getStartDate());
 			Date endDate = Date.valueOf(packageDetail.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "delete from package_detail where package_name=? AND package_price=? AND number_of_days=? AND start_date =? AND end_date=? AND hotel_name=?";
+			String sql = "DELETE FROM package_detail WHERE package_name=? AND package_price=? AND number_of_days=? AND start_date =? AND end_date=? AND hotel_name=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, packageDetail.getPackageName());
 			pst.setInt(2, packageDetail.getPackagePrice());
@@ -133,7 +133,7 @@ public class PackageDao {
 
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "Select * from package_detail";
+			String sql = "SELECT * FROM package_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
@@ -156,117 +156,6 @@ public class PackageDao {
 
 		return packageDetails;
 	}
-
-	/**
-	 * This method is used to fetch packages by country name from database
-	 * 
-	 * @return
-	 */
-	public List<TourPackageDetail> searchPackageByCountryName(String countryName) {
-		Connection connection = null;
-		PreparedStatement pst = null;
-
-		List<TourPackageDetail> packageDetails = new ArrayList<>();
-		try {
-			connection = ConnectionUtil.getConnection();
-			String sql = "Select * from package_detail where package_name=?";
-			pst = connection.prepareStatement(sql);
-			pst.setString(1, countryName);
-			ResultSet rs = pst.executeQuery();
-			while (rs.next()) {
-				String packageName = rs.getString(PACKAGE_NAME);
-				int packagePrice = rs.getInt(PACKAGE_PRICE);
-				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
-				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
-				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
-				String hotelName = rs.getString(HOTEL_NAME);
-
-				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
-						endDate, hotelName);
-				packageDetails.add(packages);
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			throw new DBException("Cannot fetch package detial by country name  from database");
-		} finally {
-			ConnectionUtil.close(pst, connection);
-		}
-		return packageDetails;
-	}
-
-	/**
-	 * This method used to fetch packages by price from database
-	 * 
-	 * @param price
-	 * @return
-	 */
-	public List<TourPackageDetail> searchPackageByPrice(int price) {
-		Connection connection = null;
-		PreparedStatement pst = null;
-
-		List<TourPackageDetail> packageDetails = new ArrayList<>();
-		try {
-			connection = ConnectionUtil.getConnection();
-			String sql = "Select * from package_detail where package_price=?";
-			pst = connection.prepareStatement(sql);
-			pst.setInt(1, price);
-			ResultSet rs = pst.executeQuery();
-			while (rs.next()) {
-				String packageName = rs.getString(PACKAGE_NAME);
-				int packagePrice = rs.getInt(PACKAGE_PRICE);
-				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
-				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
-				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
-				String hotelName = rs.getString(HOTEL_NAME);
-
-				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
-						endDate, hotelName);
-				packageDetails.add(packages);
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			throw new DBException("Cannot fetch package detail by price from database");
-		} finally {
-			ConnectionUtil.close(pst, connection);
-		}
-		return packageDetails;
-	}
-
-	/**
-	 * This method used to fetch packages by number of days from database
-	 * 
-	 * @param price
-	 * @return
-	 */
-	public List<TourPackageDetail> searchPackageByDays(int days) {
-		Connection connection = null;
-		PreparedStatement pst = null;
-
-		List<TourPackageDetail> packageDetails = new ArrayList<>();
-		try {
-			connection = ConnectionUtil.getConnection();
-			String sql = "Select * from package_detail where number_of_days=?";
-			pst = connection.prepareStatement(sql);
-			pst.setInt(1, days);
-			ResultSet rs = pst.executeQuery();
-			while (rs.next()) {
-				String packageName = rs.getString(PACKAGE_NAME);
-				int packagePrice = rs.getInt(PACKAGE_PRICE);
-				int numberOfDays = rs.getInt(NUMBER_OF_DAYS);
-				LocalDate startDate = rs.getDate(START_DATE).toLocalDate();
-				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
-				String hotelName = rs.getString(HOTEL_NAME);
-
-				TourPackageDetail packages = new TourPackageDetail(packageName, packagePrice, numberOfDays, startDate,
-						endDate, hotelName);
-				packageDetails.add(packages);
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			throw new DBException("Cannot fetch package detail by price from database");
-		} finally {
-			ConnectionUtil.close(pst, connection);
-		}
-		return packageDetails;
-	}
-
 	/**
 	 * This method is used to fetch flight detail for user selected package
 	 * 
@@ -281,7 +170,7 @@ public class PackageDao {
 		try {
 			Date startDate = Date.valueOf(previousDate);
 			connection = ConnectionUtil.getConnection();
-			String sql = "select * from flight_detail where country_name=? and journey_date=?";
+			String sql = "SELECT * FROM flight_detail WHERE country_name=? AND journey_date=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, packageDetail.getPackageName());
 			pst.setDate(2, startDate);
@@ -323,7 +212,7 @@ public class PackageDao {
 		try {
 			Date startDate = Date.valueOf(packageDetail.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "select * from flight_detail where country_name=? and journey_date=? and status=?";
+			String sql = "SELECT * FROM flight_detail WHERE country_name=? AND journey_date=? AND status=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, packageDetail.getPackageName());
 			pst.setDate(2, startDate);
@@ -455,5 +344,81 @@ public class PackageDao {
 		return imgBytes;
 
 	}
-
+	public List<TourPackageDetail> customSearchPackage(String countryName,int packagePrice,int days)
+	{
+		Connection connection = null;
+		PreparedStatement pst = null;
+		List<TourPackageDetail> packageDetail=new ArrayList<>();
+		try {
+			connection=ConnectionUtil.getConnection();
+			String sql;
+			if(countryName!=null && packagePrice==0 && days==0)
+			{
+				sql="SELECT * FROM package_detail WHERE package_name=?";
+				pst=connection.prepareStatement(sql);
+				pst.setString(1,countryName);
+			}
+			else if(countryName==null && packagePrice!=0 && days==0)
+			{
+				sql="SELECT * FROM package_detail WHERE package_price=?";
+				pst=connection.prepareStatement(sql);
+				pst.setInt(1,packagePrice);
+			}
+			else if(countryName==null && packagePrice==0 && days!=0)
+			{
+				sql="SELECT * FROM package_detail WHERE number_of_days=?";
+				pst=connection.prepareStatement(sql);
+				pst.setInt(1,days);
+			}
+			else if(countryName!=null && packagePrice>0 && days==0)
+			{
+				sql="SELECT * FROM package_detail WHERE package_name=? AND package_price=?";
+				pst=connection.prepareStatement(sql);
+				pst.setString(1,countryName);
+				pst.setInt(2,packagePrice);
+			}
+			else if(countryName!=null && packagePrice==0 && days!=0)
+			{
+				sql="SELECT * FROM package_detail WHERE package_name=? AND number_of_days=?";
+				pst=connection.prepareStatement(sql);
+				pst.setString(1,countryName);
+				pst.setInt(2,days);
+			}
+			else if(countryName==null && packagePrice!=0 && days!=0)
+			{
+				sql="SELECT * FROM package_detail WHERE package_price=? AND number_of_days=?";
+				pst=connection.prepareStatement(sql);
+				pst.setInt(1,packagePrice);
+				pst.setInt(2,days);
+			}
+			else if(countryName!=null && packagePrice!=0 && days!=0)
+			{
+				sql="SELECT * FROM package_detail WHERE package_name=? AND package_price=? AND number_of_days=?";
+				pst=connection.prepareStatement(sql);
+				pst.setString(1,countryName);
+				pst.setInt(2,packagePrice);
+				pst.setInt(3,days);
+			}
+			ResultSet rs=pst.executeQuery();
+			while(rs.next())
+			{
+				String packageName=rs.getString(PACKAGE_NAME);
+				int totalPrice=rs.getInt(PACKAGE_PRICE);
+				int totalDays=rs.getInt(NUMBER_OF_DAYS);
+				LocalDate startDate=rs.getDate(START_DATE).toLocalDate();
+				LocalDate endDate=rs.getDate(END_DATE).toLocalDate();
+				String hotelName=rs.getString(HOTEL_NAME);
+				TourPackageDetail detail=new TourPackageDetail(packageName,totalPrice,totalDays,startDate,endDate,hotelName);
+				packageDetail.add(detail);
+			}
+			
+		}
+		catch(ClassNotFoundException | SQLException e) {
+			throw new DBException("unable to fetch package detail");
+		}
+		 finally {
+				ConnectionUtil.close(pst, connection);
+		}
+		return packageDetail;
+	}
 }

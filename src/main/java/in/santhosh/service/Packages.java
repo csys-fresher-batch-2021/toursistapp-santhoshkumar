@@ -7,11 +7,9 @@ import in.santhosh.dao.PackageDao;
 import in.santhosh.exception.DBException;
 import in.santhosh.exception.PackageValidationException;
 import in.santhosh.exception.ServiceException;
-import in.santhosh.exception.ValidationException;
 import in.santhosh.model.FlightDetail;
 import in.santhosh.model.TourPackageDetail;
 import in.santhosh.validator.PackageValidator;
-import in.santhosh.validator.Validation;
 
 public class Packages {
 
@@ -84,133 +82,6 @@ public class Packages {
 			throw new ServiceException("Unable to delete package from database");
 		}
 		return isMatched;
-	}
-
-	/**
-	 * This package is used to fetch packages by country name
-	 * 
-	 * @param countryName
-	 * @return
-	 */
-	public static List<TourPackageDetail> searchPackageByName(String countryName) {
-		PackageDao dao = new PackageDao();
-		List<TourPackageDetail> packageList = null;
-		try {
-			if (Validation.stringValidation(countryName)) {
-
-				packageList = dao.searchPackageByCountryName(countryName);
-			}
-		} catch (ValidationException | DBException e) {
-			throw new ServiceException("unable to fetch package by country name");
-		}
-		return packageList;
-	}
-
-	/**
-	 * This method is used to check whether the user selected package is available
-	 * 
-	 * @param countryName
-	 * @return
-	 */
-	public static boolean packageExistsByCountryName(String countryName) {
-		boolean packageExists = false;
-		PackageDao dao = new PackageDao();
-		List<TourPackageDetail> packageList;
-		try {
-			packageList = dao.searchPackageByCountryName(countryName);
-			if (!packageList.isEmpty()) {
-				packageExists = true;
-			}
-		} catch (DBException e) {
-			throw new ServiceException("unable to fetch package list from database");
-		}
-		return packageExists;
-
-	}
-
-	/**
-	 * This method is used to check whether the user selected package price is
-	 * available
-	 * 
-	 * @param price
-	 * @return
-	 */
-	public static boolean packageExistsByPrice(int price) {
-		boolean packageExists = false;
-		PackageDao dao = new PackageDao();
-		List<TourPackageDetail> packageDetail;
-		try {
-			packageDetail = dao.searchPackageByPrice(price);
-			if (!packageDetail.isEmpty()) {
-				packageExists = true;
-			}
-		} catch (DBException e) {
-			throw new ServiceException("unable to fetch package list");
-		}
-		return packageExists;
-
-	}
-
-	/**
-	 * This method is used to fetch package detail using user selected package price
-	 * 
-	 * @param price
-	 * @return
-	 */
-	public static List<TourPackageDetail> searchPackageByPackagePrice(int price) {
-		PackageDao dao = new PackageDao();
-		List<TourPackageDetail> packageList = null;
-		try {
-			if (Validation.packagePrice(price)) {
-				packageList = dao.searchPackageByPrice(price);
-			}
-		} catch (DBException e) {
-
-			throw new ServiceException("unable to fetch package by package price");
-		}
-		return packageList;
-	}
-
-	/**
-	 * This method is used to check whether the user selected days is available
-	 * 
-	 * @param price
-	 * @return
-	 */
-	public static boolean packageExistsByDays(int days) {
-		boolean packageExists = false;
-		PackageDao dao = new PackageDao();
-		List<TourPackageDetail> packageDetail;
-		try {
-			packageDetail = dao.searchPackageByDays(days);
-			if (!packageDetail.isEmpty()) {
-				packageExists = true;
-			}
-		} catch (DBException e) {
-			throw new ServiceException("unable to fetch package detail");
-		}
-		return packageExists;
-
-	}
-
-	/**
-	 * This method is used to search package by days
-	 * 
-	 * @param days
-	 * @return
-	 */
-	public static List<TourPackageDetail> searchPackageByDays(int days) {
-		PackageDao dao = new PackageDao();
-		List<TourPackageDetail> packageList = null;
-		try {
-			if (Validation.dayValidation(days)) {
-				packageList = dao.searchPackageByDays(days);
-			}
-		} catch (DBException | ValidationException e) {
-
-			throw new ServiceException("unable to fetch package by number of days");
-		}
-		return packageList;
 	}
 
 	/**
@@ -317,5 +188,31 @@ public class Packages {
 
 		}
 		return image;
+	}
+	/**
+	 * This method is used to get package detail by user selected input
+	 * @param countryName
+	 * @param packagePrice
+	 * @param days
+	 * @return
+	 */
+	public static List<TourPackageDetail> customSearch(String countryName,String  packagePrice,String days)
+	{
+		PackageDao dao=new PackageDao();
+		int price=0;
+		int totalDays=0;
+		if(packagePrice.length()>=1)
+		{
+			price=Integer.parseInt(packagePrice);
+		}
+		if(days.length()>=1)
+		{
+			 totalDays=Integer.parseInt(days);
+		}
+		if(countryName.length()<=0)
+		{
+			countryName=null;
+		}
+		return dao.customSearchPackage(countryName, price, totalDays);
 	}
 }

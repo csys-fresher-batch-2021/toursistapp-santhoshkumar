@@ -22,8 +22,8 @@ public class RegistrationDao {
 		PreparedStatement pst = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "insert into user_detail(name,age,gender,mobile_number,user_password,retype_password)"
-					+ "values(?,?,?,?,?,?)";
+			String sql = "INSERT INTO user_detail(name,age,gender,mobile_number,user_password,retype_password)"
+					+ "VALUES(?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, userDetail.getName());
 			pst.setInt(2, userDetail.getAge());
@@ -53,7 +53,7 @@ public class RegistrationDao {
 		PreparedStatement pst = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select * from user_detail";
+			String sql = "SELECT * FROM user_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {

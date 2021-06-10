@@ -47,7 +47,7 @@ public class AddFlightDetailAction extends HttpServlet {
 				String existsMessage = "Package already exists";
 				response.sendRedirect("AddFlight.jsp?existsMessage=" + existsMessage);
 			}
-		} catch (ServiceException e) {
+		} catch (ServiceException  |IOException e) {
 			String message = e.getMessage();
 			response.sendRedirect("AddFlight.jsp?message=" + message);
 		}

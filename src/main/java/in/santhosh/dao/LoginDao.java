@@ -26,7 +26,7 @@ public class LoginDao {
 		PreparedStatement pst = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select * from user_detail where mobile_number=? AND user_password=?";
+			String sql = "SELECT * FROM user_detail WHERE mobile_number=? AND user_password=?";
 			pst = connection.prepareStatement(sql);
 			pst.setLong(1, mobileNumber);
 			pst.setString(2, password);
@@ -57,7 +57,7 @@ public class LoginDao {
 		List<UserDetail> details = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select* from user_detail where mobile_number=?";
+			String sql = "SELECT* FROM user_detail WHERE mobile_number=?";
 			pst = connection.prepareStatement(sql);
 			pst.setLong(1, mobileNumber);
 			ResultSet rs = pst.executeQuery();
@@ -82,5 +82,86 @@ public class LoginDao {
 
 		return details;
 
+	}
+	/**
+	 * This method is used to update the user password
+	 * @param newPassword
+	 */
+	public void updatePassword(String newPassword,int userId)
+	{
+		Connection connection = null;
+		PreparedStatement pst = null;
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql="UPDATE user_detail SET user_password=?,retype_password=? WHERE user_id=?";
+			pst = connection.prepareStatement(sql);
+			pst.setString(1,newPassword);
+			pst.setString(2,newPassword);
+			pst.setInt(3,userId);
+			pst.executeUpdate();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new DBException("unable to update user password");
+		}
+		finally {
+			ConnectionUtil.close(pst, connection);
+		}
+		
+	}
+	/**
+	 * This method is used to validate the old password
+	 * @param userId
+	 * @param oldPassword
+	 * @return
+	 */
+	public boolean validOldPassword(int userId,String oldPassword)
+	{
+		Connection connection = null;
+		PreparedStatement pst = null;
+		boolean isMatched=false;
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql="SELECT name FROM user_detail WHERE user_id=? AND user_password=?";
+			pst=connection.prepareStatement(sql);
+			pst.setInt(1,userId);
+			pst.setString(2,oldPassword);
+			ResultSet rs=pst.executeQuery();
+			if(rs.next())
+			{
+				isMatched=true;
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new DBException("unable to validate old password");
+		}
+		finally {
+			ConnectionUtil.close(pst, connection);
+		}
+		return isMatched;
+		
+	}
+	/**
+	 * This method is used to update the user forgot password
+	 * @param userId
+	 * @param oldPassword
+	 * @return
+	 */
+	public void updateForgotPassword(long mobileNumber,String password)
+	{
+		Connection connection = null;
+		PreparedStatement pst = null;
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql="UPDATE user_detail SET user_password=?,retype_password=? WHERE mobile_number=?";
+			pst=connection.prepareStatement(sql);
+			pst.setString(1,password);
+			pst.setString(2,password);
+			pst.setLong(3,mobileNumber);
+			pst.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new DBException("unable to validate old password");
+		}
+		finally {
+			ConnectionUtil.close(pst, connection);
+		}
 	}
 }

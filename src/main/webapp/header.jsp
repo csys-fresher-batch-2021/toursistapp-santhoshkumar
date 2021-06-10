@@ -6,6 +6,21 @@ String role = (String) session.getAttribute("ROLE");
 String LoginUser=(String)session.getAttribute("LOGINUSER");
 
 %>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+	
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+
+
+
 
 <header>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -20,21 +35,27 @@ String LoginUser=(String)session.getAttribute("LOGINUSER");
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <%if(role!=null && role.equalsIgnoreCase("admin")) {%>
-      <li class="nav-item">
-        <a class="nav-link" href="AddPackage.jsp">Add Packages</a>
-      </li>
-       <li>
-       <a class="nav-link" href="ListOfPackages.jsp">List Packages</a>
-      </li>
-        <li>
-       <a class="nav-link" href="AddFlight.jsp">Add Flight</a>
-      </li>
-       <li>
-       <a class="nav-link" href="ListOfFlight.jsp">List of flights</a>
-      </li>
-        <li>
-       <a class="nav-link" href="AddImages.jsp">Add Images</a>
-      </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Package</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownId">
+          <a class="dropdown-item" href="AddPackage.jsp">Add Packages</a>
+          <a class="dropdown-item" href="ListOfPackages.jsp">List Packages</a>
+        </div>
+       </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Flights</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownId">
+          <a class="dropdown-item" href="AddFlight.jsp">Add Flights</a>
+          <a class="dropdown-item" href="ListOfFlight.jsp">List Flights</a>
+        </div>
+       </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Images</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownId">
+          <a class="dropdown-item" href="AddImages.jsp">Add Package Images</a>
+          <a class="dropdown-item" href="AddHotelImage.jsp">Add Hotel Images</a>
+        </div>
+       </li>
         <li>
        <a class="nav-link" href="ListOfEnquiry.jsp">List of enquiry</a>
       </li>
@@ -44,33 +65,22 @@ String LoginUser=(String)session.getAttribute("LOGINUSER");
        <li>
        <a class="nav-link" href="ListOfCancelledBooking.jsp">Cancelled booking</a>
       </li>
-       <li>
-       <a class="nav-link" href="AddHotelImage.jsp">Add hotel image</a>
+        <li>
+       <a class="nav-link" href="SalesReport.jsp">Sales Report</a>
       </li>
-     
       <%} %>
       <%if(LoginUser!=null && LoginUser.equalsIgnoreCase("user")){ %>
       <li>
        <a class="nav-link" href="ListOfPackages.jsp">List Packages</a>
       </li>
        <li>
-       <a class="nav-link" href="SearchPackageByName.jsp">Search by country</a>
-      </li>
-       <li>
-       <a class="nav-link" href="SearchPackageByPrice.jsp">Search by price</a>
-      </li>
-       <li>
-       <a class="nav-link" href="SearchPackageByNumberOfDays.jsp">Search by days</a>
+       <a class="nav-link" href="CustomSearch.jsp">Custom Search</a>
       </li>
         <li>
        <a class="nav-link" href="UserBookingDetail.jsp">My Bookings</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</a>
-        <div class="dropdown-menu" aria-labelledby="dropdownId">
-          <a class="dropdown-item" href="">Action 1</a>
-          <a class="dropdown-item" href="#">Action 2</a>
-        </div>
+        <li>
+       <a class="nav-link" href="ChangePassword.jsp">Change Password</a>
       </li>
       <%} %>
     </ul>

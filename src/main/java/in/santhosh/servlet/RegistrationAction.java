@@ -16,6 +16,7 @@ import in.santhosh.service.UserRegistration;
  */
 @WebServlet("/RegistrationAction")
 public class RegistrationAction extends HttpServlet {
+	private static final String REGISTRATION_JSP_ERROR_MESSAGE = "Registration.jsp?errorMessage=";
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -35,7 +36,7 @@ public class RegistrationAction extends HttpServlet {
 						response.sendRedirect("AdminLogin.jsp");
 					} else {
 						String errorMessage = "Invalid Details";
-						response.sendRedirect("Registration.jsp?errorMessage=" + errorMessage);
+						response.sendRedirect(REGISTRATION_JSP_ERROR_MESSAGE + errorMessage);
 					}
 
 				} else {
@@ -45,11 +46,11 @@ public class RegistrationAction extends HttpServlet {
 				}
 			} else {
 				String errorMessage = "Password and Retype password not matched";
-				response.sendRedirect("Registration.jsp?errorMessage=" + errorMessage);
+				response.sendRedirect(REGISTRATION_JSP_ERROR_MESSAGE + errorMessage);
 			}
 		} catch (ServiceException | NumberFormatException e) {
 			String errorMessage = e.getMessage();
-			response.sendRedirect("Registration.jsp?errorMessage=" + errorMessage);
+			response.sendRedirect(REGISTRATION_JSP_ERROR_MESSAGE + errorMessage);
 			e.printStackTrace();
 		}
 
