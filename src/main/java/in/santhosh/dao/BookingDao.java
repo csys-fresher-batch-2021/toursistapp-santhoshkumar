@@ -37,8 +37,8 @@ public class BookingDao {
 			Date startDate = Date.valueOf(bookingDetail.getStartDate());
 			Date endDate = Date.valueOf(bookingDetail.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "insert into booking_detail(user_id,package_name,package_price,number_of_days,start_date,"
-					+ "end_date,number_of_persons,total_price)values(?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO booking_detail(user_id,package_name,package_price,number_of_days,start_date,"
+					+ "end_date,number_of_persons,total_price)VALUES(?,?,?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, bookingDetail.getId());
 			pst.setString(2, bookingDetail.getPackageName());
@@ -70,7 +70,7 @@ public class BookingDao {
 		List<BookingDetail> details = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select* from booking_detail where user_id=?";
+			String sql = "SELECT* FROM booking_detail WHERE user_id=?";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
@@ -107,7 +107,7 @@ public class BookingDao {
 		List<BookingDetail> allBookingdetails = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select* from booking_detail";
+			String sql = "SELECT* FROM booking_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
@@ -144,7 +144,7 @@ public class BookingDao {
 			Date startDate = Date.valueOf(bookingDetail.getStartDate());
 			Date endDate = Date.valueOf(bookingDetail.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "delete from booking_detail where user_id=? AND package_name=? AND package_price=? AND "
+			String sql = "DELETE FROM booking_detail WHERE user_id=? AND package_name=? AND package_price=? AND "
 					+ "number_of_days=? AND start_date=? AND end_date=? AND number_of_persons=? AND total_price=?";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, bookingDetail.getId());
@@ -177,8 +177,8 @@ public class BookingDao {
 			Date startDate = Date.valueOf(bookingDetail.getStartDate());
 			Date endDate = Date.valueOf(bookingDetail.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "insert into cancelled_booking(user_id,package_name,package_price,number_of_days,start_date,"
-					+ "end_date,number_of_persons,total_price)values(?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO cancelled_booking(user_id,package_name,package_price,number_of_days,start_date,"
+					+ "end_date,number_of_persons,total_price)VALUES(?,?,?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, bookingDetail.getId());
 			pst.setString(2, bookingDetail.getPackageName());
@@ -209,7 +209,7 @@ public class BookingDao {
 		List<BookingDetail> allCancelledBookingdetails = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select* from cancelled_booking;";
+			String sql = "SELECT* FROM cancelled_booking;";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {

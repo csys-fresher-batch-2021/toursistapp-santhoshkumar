@@ -23,6 +23,8 @@
 		<label for="password" ><strong>Password</strong></label><br>
 		<input type="password" name="password" placeholder="Enter your password" required><br>
 		<br>
+		<a href="ForgotPassword.jsp">Forgot Password</a>
+		<br>
 		<button type="submit" class="btn btn-primary">Submit</button>
 		<button  type="reset" class="btn btn-danger">Reset</button>
 	</form>

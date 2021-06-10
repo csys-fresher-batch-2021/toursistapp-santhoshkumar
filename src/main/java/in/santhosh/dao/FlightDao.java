@@ -30,8 +30,8 @@ public class FlightDao {
 			Time arrivalTime = Time.valueOf(flightDetail.getArrival());
 			Date journeyDate = Date.valueOf(flightDetail.getJourneyDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "insert into flight_detail(country_name,flight_name,source,destination,departure_time,"
-					+ "arrival_time,status,journey_date)values(?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO flight_detail(country_name,flight_name,source,destination,departure_time,"
+					+ "arrival_time,status,journey_date)VALUES(?,?,?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, flightDetail.getCountryName());
 			pst.setString(2, flightDetail.getFlightName());
@@ -61,7 +61,7 @@ public class FlightDao {
 		List<FlightDetail> flightList = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select * from flight_detail";
+			String sql = "SELECT * FROM flight_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
@@ -99,7 +99,7 @@ public class FlightDao {
 			Time arrivalTime = Time.valueOf(flightDetail.getArrival());
 			Date journeyDate = Date.valueOf(flightDetail.getJourneyDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "delete from flight_detail where country_name=? AND flight_name=? AND source=? AND destination=? "
+			String sql = "DELETE FROM flight_detail WHERE country_name=? AND flight_name=? AND source=? AND destination=? "
 					+ "AND departure_time=? AND arrival_time=? AND status=? AND journey_date=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, flightDetail.getCountryName());
@@ -131,7 +131,7 @@ public class FlightDao {
 		List<FlightDetail> flight = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select * from flight_detail";
+			String sql = "SELECT * FROM flight_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {

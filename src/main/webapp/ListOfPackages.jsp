@@ -15,7 +15,17 @@
 	<main class="container-fluid">
 	
 	
-	
+		<%
+		String role1 = (String) session.getAttribute("ROLE");
+		String LoginUser1 = (String) session.getAttribute("LOGINUSER");
+		if (role1 == null && LoginUser1 == null) {		
+			response.sendRedirect("AdminLogin.jsp");		}
+		else {			
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.	
+				response.setHeader("Pragma", "no-cache"); // HTTP 1.0.		
+			response.setDateHeader("Expires", 0);	
+			}
+		%>
 		<%
 		String infoMessage = request.getParameter("infoMessage");
 		if (infoMessage != null) {

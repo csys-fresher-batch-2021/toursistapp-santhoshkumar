@@ -26,8 +26,8 @@ public class ContactUsDao {
 			Date startDate = Date.valueOf(details.getStartDate());
 			Date endDate = Date.valueOf(details.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "insert into contact_detail(name,mobile_number,country_name,package_price,start_date,"
-					+ "end_date)values(?,?,?,?,?,?)";
+			String sql = "INSERT INTO contact_detail(name,mobile_number,country_name,package_price,start_date,"
+					+ "end_date)VALUES(?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, details.getName());
 			pst.setLong(2, details.getMobileNumber());
@@ -58,8 +58,8 @@ public class ContactUsDao {
 			Date startDate = Date.valueOf(details.getStartDate());
 			Date endDate = Date.valueOf(details.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "select name from contact_detail where name=? and mobile_number=? and country_name=? "
-					+ "and package_price=? and start_date=? and end_date=?";
+			String sql = "SELECT name FROM contact_detail WHERE name=? AND mobile_number=? AND country_name=? "
+					+ "AND package_price=? AND start_date=? AND end_date=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, details.getName());
 			pst.setLong(2, details.getMobileNumber());
@@ -91,7 +91,7 @@ public class ContactUsDao {
 		List<ContactUsDetails> userSelectedDetails = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "select* from contact_detail";
+			String sql = "SELECT* FROM contact_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
