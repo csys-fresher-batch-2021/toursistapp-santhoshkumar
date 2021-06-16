@@ -215,4 +215,15 @@ public class Packages {
 		}
 		return dao.customSearchPackage(countryName, price, totalDays);
 	}
+	/**
+	 * This method is used to search country 
+	 * @param countryName
+	 * @return
+	 */
+	public static List<TourPackageDetail> searchCountry(String countryName){
+		PackageDao dao=new PackageDao();
+		return dao.searchPackageByCountry(countryName);
+		
+		
+	}
 }

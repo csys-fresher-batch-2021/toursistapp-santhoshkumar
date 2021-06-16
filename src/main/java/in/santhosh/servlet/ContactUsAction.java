@@ -37,8 +37,9 @@ public class ContactUsAction extends HttpServlet {
 
 			LocalDate startDate = LocalDate.parse(request.getParameter("startDate"));
 			LocalDate endDate = LocalDate.parse(request.getParameter("endDate"));
+			String status = request.getParameter("status");
 			ContactUsDetails contactDetails = new ContactUsDetails(name, mobileNumber, countryName, packagePrice,
-					startDate, endDate);
+					startDate, endDate, status);
 			if (!ContactDetail.existsEnquiry(contactDetails)) {
 				if (ContactDetail.contactDetail(contactDetails)) {
 					String infoMessage = "Response sended successfully";

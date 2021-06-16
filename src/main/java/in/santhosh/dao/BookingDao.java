@@ -22,6 +22,8 @@ public class BookingDao {
 	private static final String PACKAGE_PRICE = "package_price";
 	private static final String PACKAGE_NAME = "package_name";
 	private static final String USER_ID = "user_id";
+	private static final String STATUS = "status";
+	private static final String COMMENT="comment";
 
 	/**
 	 * This method is used to add all booking details into database
@@ -30,7 +32,7 @@ public class BookingDao {
 	 * @param totalPrice
 	 */
 
-	public void addBookingDetail(BookingDetail bookingDetail, double totalPrice) {
+	public void addBookingDetail(BookingDetail bookingDetail, double totalPrice,String status,String comment ) {
 		Connection connection = null;
 		PreparedStatement pst = null;
 		try {
@@ -38,7 +40,7 @@ public class BookingDao {
 			Date endDate = Date.valueOf(bookingDetail.getEndDate());
 			connection = ConnectionUtil.getConnection();
 			String sql = "INSERT INTO booking_detail(user_id,package_name,package_price,number_of_days,start_date,"
-					+ "end_date,number_of_persons,total_price)VALUES(?,?,?,?,?,?,?,?)";
+					+ "end_date,number_of_persons,total_price,status,comment)VALUES(?,?,?,?,?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, bookingDetail.getId());
 			pst.setString(2, bookingDetail.getPackageName());
@@ -48,6 +50,8 @@ public class BookingDao {
 			pst.setDate(6, endDate);
 			pst.setInt(7, bookingDetail.getNumberOfPerson());
 			pst.setFloat(8, (float) totalPrice);
+			pst.setString(9,status);
+			pst.setString(10,comment);
 			pst.executeUpdate();
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -83,8 +87,10 @@ public class BookingDao {
 				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
 				int numberOfPersons = rs.getInt(NUMBER_OF_PERSONS);
 				double price = rs.getFloat(TOTAL_PRICE);
+				String status=rs.getString(STATUS);
+				String comment=rs.getString(COMMENT);
 				BookingDetail bookingDetail = new BookingDetail(packageName, packagePrice, numberOfDays, startDate,
-						endDate, userId, numberOfPersons, price);
+						endDate, userId, numberOfPersons, price,status,comment);
 				details.add(bookingDetail);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -119,8 +125,10 @@ public class BookingDao {
 				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
 				int numberOfPersons = rs.getInt(NUMBER_OF_PERSONS);
 				double price = rs.getFloat(TOTAL_PRICE);
+				String status=rs.getString(STATUS);
+				String comment=rs.getString(COMMENT);
 				BookingDetail bookingDetail = new BookingDetail(packageName, packagePrice, numberOfDays, startDate,
-						endDate, userId, numberOfPersons, price);
+						endDate, userId, numberOfPersons, price,status,comment);
 				allBookingdetails.add(bookingDetail);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -209,7 +217,7 @@ public class BookingDao {
 		List<BookingDetail> allCancelledBookingdetails = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT* FROM cancelled_booking;";
+			String sql = "SELECT* FROM cancelled_booking";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
@@ -221,7 +229,7 @@ public class BookingDao {
 				LocalDate endDate = rs.getDate(END_DATE).toLocalDate();
 				int numberOfPersons = rs.getInt(NUMBER_OF_PERSONS);
 				double price = rs.getFloat(TOTAL_PRICE);
-				String status = rs.getString("status");
+				String status = rs.getString(STATUS);
 				BookingDetail bookingDetail = new BookingDetail(packageName, packagePrice, numberOfDays, startDate,
 						endDate, userId, numberOfPersons, price, status);
 				allCancelledBookingdetails.add(bookingDetail);
@@ -233,5 +241,31 @@ public class BookingDao {
 		}
 		return allCancelledBookingdetails;
 
+	}
+	/**
+	 * This method is used to update the cancelled status
+	 * @param countryName
+	 * @param status
+	 */
+	public void updateTourStatus(String countryName,String status,String comment,LocalDate date)
+	{
+		Connection connection = null;
+		PreparedStatement pst = null;
+		try {
+			Date startDate = Date.valueOf(date);
+			connection =ConnectionUtil.getConnection();
+			String sql="UPDATE booking_detail SET status=?,comment=? WHERE package_name=? AND start_date >?";
+			pst=connection.prepareStatement(sql);
+			pst.setString(1,status);
+			pst.setString(2,comment);
+			pst.setString(3,countryName);
+			pst.setDate(4, startDate);
+			pst.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new DBException("unable to update status");
+		}
+		finally {
+			ConnectionUtil.close(pst, connection);
+		}
 	}
 }

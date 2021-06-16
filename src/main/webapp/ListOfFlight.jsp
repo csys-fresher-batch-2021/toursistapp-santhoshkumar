@@ -1,3 +1,4 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.util.List"%>
 <%@page import="in.santhosh.service.Flights"%>
 <%@page import="in.santhosh.model.FlightDetail"%>
@@ -17,6 +18,9 @@
 		if (infoMessage != null) {
 			out.println("<font color='green'>" + infoMessage + "</font>");
 		}
+	%>
+	<%
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
 	%>
 	<h3>List of flights</h3>
 	<table class="table table-bordered">
@@ -47,7 +51,7 @@
 	<td><%=flightList.getFlightName() %></td>
 	<td><%=flightList.getSource() %></td>
 	<td><%=flightList.getDestination()%></td>
-	<td><%=flightList.getJourneyDate() %></td>
+	<td><%=formatter.format(flightList.getJourneyDate())%></td>
 	<td><%=flightList.getDeparture() %></td>
 	<td><%=flightList.getArrival() %></td>
 	<td><%=flightList.getStatus() %></td>

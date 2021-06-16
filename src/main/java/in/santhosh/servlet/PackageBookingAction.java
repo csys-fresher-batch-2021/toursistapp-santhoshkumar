@@ -32,10 +32,12 @@ public class PackageBookingAction extends HttpServlet {
 			LocalDate endDate = LocalDate.parse(request.getParameter("endDate"));
 			int id = Integer.parseInt(request.getParameter("id"));
 			int numberOfPreson = Integer.parseInt(request.getParameter("person"));
+			String status = request.getParameter("status");
+			String comment = request.getParameter("comment");
 			BookingDetail bookingDetail = new BookingDetail(packageName, packagePrice, numberOfDays, startDate, endDate,
 					id, numberOfPreson);
 			double totalPrice = Booking.calculateBill(bookingDetail);
-			if (Booking.bookingPackage(bookingDetail, totalPrice)) {
+			if (Booking.bookingPackage(bookingDetail, totalPrice, status, comment)) {
 				response.sendRedirect("FinalBookingPage.jsp");
 			}
 		} catch (ServiceException | NumberFormatException e) {

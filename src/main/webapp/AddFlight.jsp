@@ -9,6 +9,7 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
+	<h3>Add Flight</h3>
 	<%
 		String errorMessage = request.getParameter("errorMessage");
 		if(errorMessage != null){

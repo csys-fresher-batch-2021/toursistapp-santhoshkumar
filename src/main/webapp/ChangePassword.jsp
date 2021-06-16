@@ -24,6 +24,7 @@
 			out.println("<font color='green'>" + infoMessage + "</font>");
 		}
 		%>
+		<h3>Change Password</h3>
 	<form action="ChangePasswordAction" method="post">
 	<input type="hidden" name="userId" value=<%=userId %>>
 		<label for="password"><strong>Old Password</strong></label><br>

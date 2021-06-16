@@ -13,26 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/VerifyOtpAction")
 public class VerifyOtpAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-			int userotp=Integer.parseInt(request.getParameter("otp"));
-			int generatedOpt=Integer.parseInt(request.getParameter("gOtp"));
-			if(userotp==generatedOpt)
-			{
+			int userotp = Integer.parseInt(request.getParameter("otp"));
+			int generatedOpt = Integer.parseInt(request.getParameter("gOtp"));
+			if (userotp == generatedOpt) {
 				response.sendRedirect("NewPassword.jsp");
-				
-			}
-			else {
-				String errorMessage="Entered otp is incorrect";
-				response.sendRedirect("ForgotPassword.jsp?errorMessage="+errorMessage);
+
+			} else {
+				String errorMessage = "Entered otp is incorrect";
+				response.sendRedirect("ForgotPassword.jsp?errorMessage=" + errorMessage);
 			}
 		} catch (NumberFormatException e) {
 			response.sendRedirect("ForgotPassword.jsp?errorMessage=" + e);
-		
+
+		}
 	}
-   }
 }
-
-

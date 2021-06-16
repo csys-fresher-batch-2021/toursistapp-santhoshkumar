@@ -1,3 +1,4 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="in.santhosh.model.BookingDetail"%>
 <%@page import="java.util.List"%>
 <%@page import="in.santhosh.service.SalesReport"%>
@@ -16,9 +17,12 @@
 	String countryName=request.getParameter("countryName");
 	%>
 	<%int totalPrice=SalesReport.totalPriceForSpecificCountry(countryName); %>
+	<%
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
+	%>
 	<br>
 	<br>
-	<span class="border border-primary"><strong>Total Booking Price:<%=totalPrice%></strong></span>
+	<span class="border border-primary"><strong>Total Booking Price:Rs.<%=totalPrice%></strong></span>
 	<br>
 	<br>
 	<table class="table table-bordered">
@@ -45,12 +49,12 @@
 	<td><%=i%></td>
 	<td><%=details.getId()%></td>
 	<td><%=details.getPackageName()%></td>
-	<td><%=details.getPackagePrice()%></td>
+	<td>Rs.<%=details.getPackagePrice()%></td>
 	<td><%=details.getNumberOfDays()%></td>
-	<td><%=details.getStartDate()%></td>
-	<td><%=details.getEndDate()%></td>
+	<td><%=formatter.format(details.getStartDate())%></td>
+	<td><%=formatter.format(details.getEndDate())%></td>
 	<td><%=details.getNumberOfPerson()%></td>
-	<td><%=details.getTotalPrice()%></td>
+	<td>Rs.<%=details.getTotalPrice()%></td>
 	</tr>
 	<%} %>
 	

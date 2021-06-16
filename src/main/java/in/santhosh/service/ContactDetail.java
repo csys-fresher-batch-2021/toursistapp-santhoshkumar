@@ -63,5 +63,18 @@ public class ContactDetail {
 		return dao.displayEnquiry();
 
 	}
+	/**
+	 * This is method used to update enquiry
+	 * @param mobileNumber
+	 */
+	public static void  updateEnquiry(long mobileNumber)
+	{
+		ContactUsDao dao=new ContactUsDao();
+		try {
+			dao.updateEnquiryStatus(mobileNumber);
+		} catch (DBException e) {
+			throw new ServiceException("unable to update status");
+		}
+	}
 
 }

@@ -27,7 +27,7 @@ public class ContactUsDao {
 			Date endDate = Date.valueOf(details.getEndDate());
 			connection = ConnectionUtil.getConnection();
 			String sql = "INSERT INTO contact_detail(name,mobile_number,country_name,package_price,start_date,"
-					+ "end_date)VALUES(?,?,?,?,?,?)";
+					+ "end_date,status)VALUES(?,?,?,?,?,?,?)";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, details.getName());
 			pst.setLong(2, details.getMobileNumber());
@@ -35,6 +35,7 @@ public class ContactUsDao {
 			pst.setInt(4, details.getPackagePrice());
 			pst.setDate(5, startDate);
 			pst.setDate(6, endDate);
+			pst.setString(7,details.getStatus());
 			pst.executeUpdate();
 		} catch (SQLException | ClassNotFoundException e) {
 			throw new DBException("unable to add details into database");
@@ -101,8 +102,9 @@ public class ContactUsDao {
 				int packagePrice = rs.getInt("package_price");
 				LocalDate startDate = rs.getDate("start_date").toLocalDate();
 				LocalDate endDate = rs.getDate("end_date").toLocalDate();
+				String status=rs.getString("status");
 				ContactUsDetails details = new ContactUsDetails(name, mobileNumber, countryName, packagePrice,
-						startDate, endDate);
+						startDate, endDate,status);
 				userSelectedDetails.add(details);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -112,5 +114,30 @@ public class ContactUsDao {
 		}
 		return userSelectedDetails;
 
+	}
+	/**
+	 * This method is used to update the status 
+	 * @param mobileNumber
+	 */
+	public void updateEnquiryStatus(long mobileNumber) {
+		Connection connection=null;
+		PreparedStatement pst=null;
+		try {
+			connection=ConnectionUtil.getConnection();
+			String sql="UPDATE contact_detail SET status=? WHERE mobile_number=?";
+			pst=connection.prepareStatement(sql);
+			pst.setString(1,"Completed");
+			pst.setLong(2,mobileNumber);
+			pst.executeUpdate();
+		}
+		catch(ClassNotFoundException | SQLException e){
+			throw new DBException("unable to update status");
+			
+		}
+		 finally {
+				ConnectionUtil.close(pst, connection);
+		}
+		
+		
 	}
 }

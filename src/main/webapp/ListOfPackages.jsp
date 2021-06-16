@@ -1,3 +1,4 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="in.santhosh.dao.PackageDao"%>
 <%@page import="in.santhosh.model.TourPackageDetail"%>
 <%@page import="java.util.List"%>
@@ -14,18 +15,6 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 	
-	
-		<%
-		String role1 = (String) session.getAttribute("ROLE");
-		String LoginUser1 = (String) session.getAttribute("LOGINUSER");
-		if (role1 == null && LoginUser1 == null) {		
-			response.sendRedirect("AdminLogin.jsp");		}
-		else {			
-		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.	
-				response.setHeader("Pragma", "no-cache"); // HTTP 1.0.		
-			response.setDateHeader("Expires", 0);	
-			}
-		%>
 		<%
 		String infoMessage = request.getParameter("infoMessage");
 		if (infoMessage != null) {
@@ -35,6 +24,9 @@
 		<%
 		String role = (String) session.getAttribute("ROLE");
 		String LoginUser = (String) session.getAttribute("LOGINUSER");
+		%>
+		<%
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
 		%>
 		<h3>List of packages</h3>
 		<div class="row">
@@ -52,13 +44,13 @@
 						<p class="card-text">
 							<strong>Country Name : </strong><%=packages.getPackageName()%></p>
 						<p class="card-text">
-							<strong>Package Price : </strong><%=packages.getPackagePrice()%></p>
+							<strong>Package Price : Rs.</strong><%=packages.getPackagePrice()%></p>
 						<p class="card-text">
 							<strong>Number of days : </strong><%=packages.getNumberOfDays()%></p>
 						<p class="card-text">
-							<strong>Start date : </strong><%=packages.getStartDate()%></p>
+							<strong>Start date : </strong><%=formatter.format(packages.getStartDate())%></p>
 						<p class="card-text">
-							<strong>End date : </strong><%=packages.getEndDate()%></p>
+							<strong>End date : </strong><%=formatter.format(packages.getEndDate())%></p>
 						<p class="card-text">
 							<strong>Hotel name : </strong><%=packages.getHotelName()%></p>
 						<%

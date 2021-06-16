@@ -12,6 +12,14 @@ public class BookingDetail {
 	private int numberOfPerson;
 	private double totalPrice;
 	private String status;
+	private String comment;
+
+	
+
+
+	public String getComment() {
+		return comment;
+	}
 
 	public String getStatus() {
 		return status;
@@ -41,6 +49,15 @@ public class BookingDetail {
 		return endDate;
 	}
 
+
+	public int getId() {
+		return id;
+	}
+
+	public int getNumberOfPerson() {
+		return numberOfPerson;
+	}
+	
 	public BookingDetail(String packageName, int packagePrice, int numberOfDays, LocalDate startDate, LocalDate endDate,
 			int id, int numberOfPerson, double totalPrice, String status) {
 		super();
@@ -55,14 +72,6 @@ public class BookingDetail {
 		this.status = status;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public int getNumberOfPerson() {
-		return numberOfPerson;
-	}
-
 	public BookingDetail(String packageName, int packagePrice, int numberOfDays, LocalDate startDate, LocalDate endDate,
 			int id, int numberOfPerson) {
 		super();
@@ -73,6 +82,20 @@ public class BookingDetail {
 		this.endDate = endDate;
 		this.id = id;
 		this.numberOfPerson = numberOfPerson;
+	}
+	public BookingDetail(String packageName, int packagePrice, int numberOfDays, LocalDate startDate, LocalDate endDate,
+			int id, int numberOfPerson, double totalPrice, String status, String comment) {
+		super();
+		this.packageName = packageName;
+		this.packagePrice = packagePrice;
+		this.numberOfDays = numberOfDays;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.id = id;
+		this.numberOfPerson = numberOfPerson;
+		this.totalPrice = totalPrice;
+		this.status = status;
+		this.comment = comment;
 	}
 
 	public BookingDetail(String packageName, int packagePrice, int numberOfDays, LocalDate startDate, LocalDate endDate,

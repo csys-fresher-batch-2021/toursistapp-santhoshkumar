@@ -105,7 +105,8 @@ public class PackageDao {
 			Date startDate = Date.valueOf(packageDetail.getStartDate());
 			Date endDate = Date.valueOf(packageDetail.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "DELETE FROM package_detail WHERE package_name=? AND package_price=? AND number_of_days=? AND start_date =? AND end_date=? AND hotel_name=?";
+			String sql = "DELETE FROM package_detail WHERE package_name=? AND package_price=? AND number_of_days=? "
+					+ "AND start_date =? AND end_date=? AND hotel_name=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, packageDetail.getPackageName());
 			pst.setInt(2, packageDetail.getPackagePrice());
@@ -344,6 +345,13 @@ public class PackageDao {
 		return imgBytes;
 
 	}
+	/**
+	 * This method is used to filter the package for easy access
+	 * @param countryName
+	 * @param packagePrice
+	 * @param days
+	 * @return
+	 */
 	public List<TourPackageDetail> customSearchPackage(String countryName,int packagePrice,int days)
 	{
 		Connection connection = null;
@@ -420,5 +428,40 @@ public class PackageDao {
 				ConnectionUtil.close(pst, connection);
 		}
 		return packageDetail;
+	}
+	/**
+	 * This package is used to search package by country name
+	 * @param countryName
+	 * @return
+	 */
+	public List<TourPackageDetail> searchPackageByCountry(String countryName) {
+		Connection connection = null;
+		PreparedStatement pst = null;
+		List<TourPackageDetail> packageDetail=new ArrayList<>();
+		try {
+			connection =ConnectionUtil.getConnection();
+			String sql="SELECT * FROM package_detail WHERE package_name=?";
+			pst=connection.prepareStatement(sql);
+			pst.setString(1,countryName);
+			ResultSet rs=pst.executeQuery();
+			while(rs.next())
+			{
+				String packageName=rs.getString(PACKAGE_NAME);
+				int totalPrice=rs.getInt(PACKAGE_PRICE);
+				int totalDays=rs.getInt(NUMBER_OF_DAYS);
+				LocalDate startDate=rs.getDate(START_DATE).toLocalDate();
+				LocalDate endDate=rs.getDate(END_DATE).toLocalDate();
+				String hotelName=rs.getString(HOTEL_NAME);
+				TourPackageDetail detail=new TourPackageDetail(packageName,totalPrice,totalDays,startDate,endDate,hotelName);
+				packageDetail.add(detail);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new DBException("unable to search package by country");
+		}
+		finally {
+			ConnectionUtil.close(pst, connection);
+	}
+		return packageDetail;
+		
 	}
 }

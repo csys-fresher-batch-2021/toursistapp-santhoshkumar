@@ -12,6 +12,12 @@ public class SendOtp {
 	private SendOtp() {
 
 	}
+	/**
+	 * This method is used to send otp
+	 * @param message
+	 * @param number
+	 * @param apiKey
+	 */
 
 	public static void sendOTP(String message, String number, String apiKey) {
 		try {
