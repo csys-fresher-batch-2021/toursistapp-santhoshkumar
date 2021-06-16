@@ -4,12 +4,12 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Hotel Image</title>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-
+<h3>Add Hotel Image</h3>
 <label for="hotelName"><strong>Hotel Name</strong></label><br>
 		<form action="AddHotelImageAction">
 			<select name="hotelName">

@@ -97,9 +97,10 @@ public class SalesReportDao {
 		int totalPrice = 0;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT  SUM(total_price) AS total_price FROM  booking_detail WHERE package_name=?";
+			String sql = "SELECT  SUM(total_price) AS total_price FROM  booking_detail WHERE package_name=? AND status=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, countryName);
+			pst.setString(2,"Confirmed");
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				totalPrice = rs.getInt("total_price");

@@ -40,7 +40,7 @@ number_of_days int not null,
 start_date date not null,
 end_date date not null,
 number_of_persons int not null,
-total_price float not null);
+total_price float not null,status not null);
 
 --cancelled booking table
 create table cancelled _booking(user_id int not null,

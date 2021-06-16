@@ -15,6 +15,7 @@
 	%>
 <jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
+	<h3>Add Package Images</h3>
 	<form action="AddImageAction" >
 		<label for="countryName"><strong>Country Name</strong></label><br>
 		<select name="countryName">

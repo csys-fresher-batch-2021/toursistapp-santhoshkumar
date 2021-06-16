@@ -1,3 +1,4 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="in.santhosh.service.ContactDetail"%>
 <%@page import="in.santhosh.model.ContactUsDetails"%>
 <%@page import="java.util.List"%>
@@ -7,11 +8,14 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Enquiry</title>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
+	<%
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
+	%>
 	<h3>List of enquiry</h3>
 	<table class="table table-bordered">
 	<caption>List of all enquiry</caption>
@@ -24,6 +28,8 @@
 	<th scope="col">Package Price</th>
 	<th scope="col">Start Date</th>
 	<th scope="col">End Date</th>
+	<th scope="col">Status</th>
+	<th scope ="col"></th>
 	</tr>
 	<%
 	List<ContactUsDetails> details=ContactDetail.displayAllEnquiry();
@@ -36,11 +42,16 @@
 	<td><%=enquiryDetails.getName() %></td>
 	<td><%=enquiryDetails.getMobileNumber()%></td>	
 	<td><%=enquiryDetails.getCountryName()%></td>	
-	<td><%=enquiryDetails.getPackagePrice()%></td>	
-	<td><%=enquiryDetails.getStartDate()%></td>
-	<td><%=enquiryDetails.getEndDate() %></td>
+	<td>Rs.<%=enquiryDetails.getPackagePrice()%></td>	
+	<td><%=formatter.format(enquiryDetails.getStartDate())%></td>
+	<td><%=formatter.format(enquiryDetails.getEndDate())%></td>
+	<td><%=enquiryDetails.getStatus() %></td>
+	<% if(enquiryDetails.getStatus().equals("Pending")){%>
+	<td><a href="UpdateEnquiryStatus?mobileNumber=<%=enquiryDetails.getMobileNumber() %>" class="btn btn-primary">Done</a>
+	</td>	
+	<%}%>
 	</tr>
-	<%} %>	
+	<%} %>
 	</thead>
 	</table>
 	

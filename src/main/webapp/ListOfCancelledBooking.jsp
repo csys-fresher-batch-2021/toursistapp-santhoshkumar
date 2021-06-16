@@ -1,3 +1,4 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="in.santhosh.service.Booking"%>
 <%@page import="java.util.List"%>
 <%@page import="in.santhosh.model.BookingDetail"%>
@@ -12,6 +13,9 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
+	<%
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
+	%>
 	<h3>List of Cancelled Bookings</h3>
 	<table class="table table-bordered">
 	<caption>Cancelled Booking Details</caption>
@@ -38,12 +42,12 @@
 	<td><%=i%></td>
 	<td><%=details.getId()%></td>
 	<td><%=details.getPackageName()%></td>
-	<td><%=details.getPackagePrice()%></td>
+	<td>Rs.<%=details.getPackagePrice()%></td>
 	<td><%=details.getNumberOfDays()%></td>
-	<td><%=details.getStartDate()%></td>
-	<td><%=details.getEndDate()%></td>
+	<td><%=formatter.format(details.getStartDate())%></td>
+	<td><%=formatter.format(details.getEndDate())%></td>
 	<td><%=details.getNumberOfPerson()%></td>
-	<td><%=details.getTotalPrice()%></td>
+	<td>Rs.<%=details.getTotalPrice()%></td>
 	<td><%=details.getStatus() %></td>
 	</tr>
 	<%} %>

@@ -10,9 +10,14 @@ public class ContactUsDetails {
 	private int packagePrice;
 	private LocalDate startDate;
 	private LocalDate endDate;
+	private String status;
 
 	public String getName() {
 		return name;
+	}
+
+	public String getStatus() {
+		return status;
 	}
 
 	public long getMobileNumber() {
@@ -35,8 +40,9 @@ public class ContactUsDetails {
 		return endDate;
 	}
 
+
 	public ContactUsDetails(String name, long mobileNumber, String countryName, int packagePrice, LocalDate startDate,
-			LocalDate endDate) {
+			LocalDate endDate, String status) {
 		super();
 		this.name = name;
 		this.mobileNumber = mobileNumber;
@@ -44,6 +50,7 @@ public class ContactUsDetails {
 		this.packagePrice = packagePrice;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.status = status;
 	}
 
 }

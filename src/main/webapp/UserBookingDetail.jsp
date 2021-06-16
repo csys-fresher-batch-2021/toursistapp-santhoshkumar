@@ -1,4 +1,6 @@
  
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="in.santhosh.model.ContactUsDetails"%>
 <%@page import="in.santhosh.model.BookingDetail"%>
 <%@page import="java.util.List"%>
@@ -27,8 +29,11 @@
 		}
 		%>
 	<% int userId=(int) session.getAttribute("LOGINUSER_ID");%>
+	<%
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY");
+	%>
 	<h3>My Bookings</h3>
-	<table class="table table-bordered">
+	<table class="table table-striped">
 	<caption>My Booking Details</caption>
 	<thead>
 	<tr>
@@ -41,6 +46,8 @@
 	<th scope="col">End Date</th>
 	<th scope="col">Number Of Person</th>
 	<th scope="col">Total Price</th>
+	<th scope="col">Status</th>
+	<th scope="col">Comment</th>
 	<th scope="col"></th>
 	</tr>
 	
@@ -50,17 +57,23 @@
 	for(BookingDetail details:bookingDetail){
 		i++;
 	%>
+	<%
+	LocalDate date=LocalDate.now();
+	%>
 	
 	<tr>
 	<td><%=i%></td>
 	<td><%=details.getId()%></td>
 	<td><%=details.getPackageName()%></td>
-	<td><%=details.getPackagePrice()%></td>
+	<td>Rs.<%=details.getPackagePrice()%></td>
 	<td><%=details.getNumberOfDays()%></td>
-	<td><%=details.getStartDate()%></td>
-	<td><%=details.getEndDate()%></td>
+	<td><%=formatter.format(details.getStartDate())%></td>
+	<td><%=formatter.format(details.getEndDate())%></td>
 	<td><%=details.getNumberOfPerson()%></td>
-	<td><%=details.getTotalPrice()%></td>
+	<td>Rs.<%=details.getTotalPrice()%></td>
+	<td><%=details.getStatus() %></td>
+	<td><%=details.getComment() %></td>
+	<%if(details.getStartDate().isAfter(date) && details.getStatus().equals("Confirmed")){%>
 	<td>
 	<a href="DeleteBookingAction?id=<%=details.getId()%>
 	&packageName=<%=details.getPackageName()%>
@@ -69,8 +82,9 @@
 	&startDate=<%=details.getStartDate()%>
 	&endDate=<%=details.getEndDate()%>
 	&numberOfPersons=<%=details.getNumberOfPerson()%>
-	&totalPrice=<%=details.getTotalPrice()%>"class="btn btn-danger">Cancel</a>
+	&totalPrice=<%=details.getTotalPrice()%>"class="btn btn-danger" >Cancel</a>
 	</td>
+	<%} %>
 	</tr>
 	<% } %>
 	</thead>

@@ -1,5 +1,6 @@
 package in.santhosh.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import in.santhosh.dao.BookingDao;
@@ -34,11 +35,11 @@ public class Booking {
 	 * @param totalPrice
 	 * @return
 	 */
-	public static boolean bookingPackage(BookingDetail bookingDetail, double totalPrice) {
+	public static boolean bookingPackage(BookingDetail bookingDetail, double totalPrice,String status,String comment ) {
 		boolean validBooking = false;
 		BookingDao dao = new BookingDao();
 		try {
-			dao.addBookingDetail(bookingDetail, totalPrice);
+			dao.addBookingDetail(bookingDetail, totalPrice,status,comment);
 			validBooking = true;
 		} catch (DBException e) {
 			throw new ServiceException("unable to book package");
@@ -122,5 +123,27 @@ public class Booking {
 
 		return dao.getAllCancelledList();
 
+	}
+	/**
+	 * This method is used to update journey status
+	 * @param countryName
+	 * @param status
+	 * @return
+	 */
+	public static boolean updateJourneyStatus(String countryName,String status,String comment)
+	{
+		boolean isUpdated=false;
+		BookingDao dao=new BookingDao();
+		LocalDate date=LocalDate.now();
+		
+		
+		try {
+			dao.updateTourStatus(countryName, status,comment,date);
+			isUpdated=true;
+			
+		} catch (Exception e) {
+			throw new ServiceException("unable to update status");
+		}
+		return isUpdated;
 	}
 }

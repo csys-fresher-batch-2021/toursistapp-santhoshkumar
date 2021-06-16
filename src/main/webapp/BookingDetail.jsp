@@ -24,6 +24,7 @@
 		LocalDate startDate = LocalDate.parse(request.getParameter("startDate"));
 		LocalDate endDate = LocalDate.parse(request.getParameter("endDate"));
 		String hotelName = request.getParameter("hotelName");
+		String status=request.getParameter("status");
 		TourPackageDetail packageDetail = new TourPackageDetail(packageName, packagePrice, days, startDate, endDate, hotelName);
 		%>
 		<br>
@@ -98,10 +99,11 @@
 							out.println("<font color='red'>" + existsMessage + "</font>");
 						}
 						%>
-						<h3 class="text-center">Book today</h3>
+						<h3 class="text-center">Enquiry</h3>
 					</div>
 					<div class="border">
 						<div class="text-center">
+							<input type="hidden" name="status" value="Pending">
 							<input type="hidden" name="numberOfDays" value=<%=days%>>
 							<input type="hidden" name="countryName" value=<%=packageName%>>
 							<input type="hidden" name="startDate" value=<%=startDate%>>
@@ -157,9 +159,11 @@
 						<h3 class="card-title">Book now</h3>
 						<h2 class="card-text"><%=packageName%></h2>
 						<h3 class="card-text">
-							<%=packagePrice%></h3>
+							Rs.<%=packagePrice%></h3>
 						<p class="card-text">per person</p>
 						<form action="PackageBookingAction">
+							<input type="hidden" name="status" value="Confirmed">
+							<input type="hidden" name="comment" value="Have a safe journey">
 							<input type="hidden" name="packageName" value=<%=packageName%>>
 							<input type="hidden" name="packagePrice" value=<%=packagePrice%>>
 							<input type="hidden" name="numberOfDays" value=<%=days%>>
@@ -169,7 +173,7 @@
 								type="hidden" name="id" value=<%=userId%>> <label
 								for="person"><Strong>Person</Strong></label><br> <input
 								type="number" name="person" placeholder="number of passengers"
-								min="1" required><br> <br>
+								min="1" max="10" required><br> <br>
 							<button type="submit" class="btn btn-primary">Book</button>
 							<br>
 						</form>
