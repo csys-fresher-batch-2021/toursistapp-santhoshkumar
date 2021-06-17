@@ -20,8 +20,8 @@ public class Validation {
 
 	public static boolean stringValidation(String validateString) {
 		boolean isValidString = true;
-		if (validateString.equals(" ") || validateString.equals("")) {
-			throw new ValidationException("Entered value is null");
+		if (validateString.trim().equals("")) {
+			throw new ValidationException("Enter name correctly");
 		}
 		for (int index = 0; index < validateString.length(); index++) {
 			if (validateString.charAt(index) >= '0' && validateString.charAt(index) <= '9') {
