@@ -27,3 +27,9 @@
 
 #### Feature 13:Calculate total price ####
 
+#### Feature14:Sales report ####
+
+#### Feature15:Forgot Password ####
+
+#### Feature16:Cancel all booking ####
+
