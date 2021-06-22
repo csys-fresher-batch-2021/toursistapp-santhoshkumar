@@ -19,6 +19,7 @@ import in.santhosh.service.UserLogin;
  */
 @WebServlet("/SendOtpAction")
 public class SendOtpAction extends HttpServlet {
+	private static final String FORGOT_PASSWORD_JSP_ERROR_MESSAGE = "ForgotPassword.jsp?errorMessage=";
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -37,11 +38,15 @@ public class SendOtpAction extends HttpServlet {
 				response.sendRedirect("VerifyOtp.jsp");
 			} else {
 				String errorMessage = "Your mobile number is not registered";
-				response.sendRedirect("ForgotPassword.jsp?errorMessage=" + errorMessage);
+				response.sendRedirect(FORGOT_PASSWORD_JSP_ERROR_MESSAGE + errorMessage);
 			}
 		} catch (NumberFormatException e) {
 			String errorMessage = "Enter mobile Number correctly";
-			response.sendRedirect("ForgotPassword.jsp?errorMessage=" + errorMessage);
+			response.sendRedirect(FORGOT_PASSWORD_JSP_ERROR_MESSAGE + errorMessage);
+		}
+		catch(IOException e)
+		{
+			response.sendRedirect(FORGOT_PASSWORD_JSP_ERROR_MESSAGE + e);
 		}
 	}
 

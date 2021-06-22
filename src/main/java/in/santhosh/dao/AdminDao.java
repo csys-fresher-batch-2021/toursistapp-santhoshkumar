@@ -23,7 +23,7 @@ public class AdminDao {
 		PreparedStatement pst = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM admin_detail WHERE mobile_number=? AND user_password=?";
+			String sql = "SELECT mobile_number FROM admin_detail WHERE mobile_number=? AND user_password=?";
 			pst = connection.prepareStatement(sql);
 			pst.setLong(1, mobileNumber);
 			pst.setString(2, password);

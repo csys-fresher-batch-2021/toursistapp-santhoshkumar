@@ -31,7 +31,7 @@ public class UpadateForgotPasswordAction extends HttpServlet {
 				String errorMessage = "Enter password and retype password correctly";
 				response.sendRedirect("NewPassword.jsp?errorMessage=" + errorMessage);
 			}
-		} catch (ServiceException | NumberFormatException e) {
+		} catch (ServiceException | NumberFormatException | IOException e) {
 			response.sendRedirect("NewPassword.jsp?errorMessage=" + e);
 		}
 	}

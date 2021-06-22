@@ -53,7 +53,8 @@ public class RegistrationDao {
 		PreparedStatement pst = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM user_detail";
+			String sql = "SELECT name,age,gender,mobile_number,user_password,"
+					+ "retype_password FROM user_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {

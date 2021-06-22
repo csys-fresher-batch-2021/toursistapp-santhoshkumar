@@ -68,7 +68,8 @@ public class PackageDao {
 		PreparedStatement pst = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT* FROM package_detail";
+			String sql = "SELECT package_name,package_price,number_of_days,start_date,"
+					+ "end_date,hotel_name FROM package_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
@@ -134,7 +135,8 @@ public class PackageDao {
 
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM package_detail";
+			String sql = "SELECT package_name,package_price,number_of_days,"
+					+ "start_date,end_date,hotel_name FROM package_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
@@ -171,7 +173,8 @@ public class PackageDao {
 		try {
 			Date startDate = Date.valueOf(previousDate);
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM flight_detail WHERE country_name=? AND journey_date=?";
+			String sql = "SELECT country_name,flight_name,source,destination,departure_time,"
+					+ "arrival_time,status,journey_date FROM flight_detail WHERE country_name=? AND journey_date=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, packageDetail.getPackageName());
 			pst.setDate(2, startDate);
@@ -213,7 +216,9 @@ public class PackageDao {
 		try {
 			Date startDate = Date.valueOf(packageDetail.getEndDate());
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM flight_detail WHERE country_name=? AND journey_date=? AND status=?";
+			String sql = "SELECT country_name,flight_name,source,destination,"
+					+ "departure_time,arrival_time,status,journey_date FROM flight_detail "
+					+ "WHERE country_name=? AND journey_date=? AND status=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, packageDetail.getPackageName());
 			pst.setDate(2, startDate);
@@ -362,46 +367,54 @@ public class PackageDao {
 			String sql;
 			if(countryName!=null && packagePrice==0 && days==0)
 			{
-				sql="SELECT * FROM package_detail WHERE package_name=?";
+				sql="SELECT package_name,package_price,number_of_days,"
+						+ "start_date,end_date,hotel_name FROM package_detail WHERE package_name=?";
 				pst=connection.prepareStatement(sql);
 				pst.setString(1,countryName);
 			}
 			else if(countryName==null && packagePrice!=0 && days==0)
 			{
-				sql="SELECT * FROM package_detail WHERE package_price=?";
+				sql="SELECT package_name,package_price,number_of_days,"
+						+ "start_date,end_date,hotel_name FROM package_detail WHERE package_price=?";
 				pst=connection.prepareStatement(sql);
 				pst.setInt(1,packagePrice);
 			}
 			else if(countryName==null && packagePrice==0 && days!=0)
 			{
-				sql="SELECT * FROM package_detail WHERE number_of_days=?";
+				sql="SELECT package_name,package_price,number_of_days,"
+						+ "start_date,end_date,hotel_name FROM package_detail WHERE number_of_days=?";
 				pst=connection.prepareStatement(sql);
 				pst.setInt(1,days);
 			}
 			else if(countryName!=null && packagePrice>0 && days==0)
 			{
-				sql="SELECT * FROM package_detail WHERE package_name=? AND package_price=?";
+				sql="SELECT package_name,package_price,number_of_days,"
+						+ "start_date,end_date,hotel_name FROM package_detail WHERE package_name=? AND package_price=?";
 				pst=connection.prepareStatement(sql);
 				pst.setString(1,countryName);
 				pst.setInt(2,packagePrice);
 			}
 			else if(countryName!=null && packagePrice==0 && days!=0)
 			{
-				sql="SELECT * FROM package_detail WHERE package_name=? AND number_of_days=?";
+				sql="SELECT package_name,package_price,number_of_days,"
+						+ "start_date,end_date,hotel_name FROM package_detail WHERE package_name=? AND number_of_days=?";
 				pst=connection.prepareStatement(sql);
 				pst.setString(1,countryName);
 				pst.setInt(2,days);
 			}
 			else if(countryName==null && packagePrice!=0 && days!=0)
 			{
-				sql="SELECT * FROM package_detail WHERE package_price=? AND number_of_days=?";
+				sql="SELECT package_name,package_price,number_of_days,"
+						+ "start_date,end_date,hotel_name FROM package_detail WHERE package_price=? AND number_of_days=?";
 				pst=connection.prepareStatement(sql);
 				pst.setInt(1,packagePrice);
 				pst.setInt(2,days);
 			}
 			else if(countryName!=null && packagePrice!=0 && days!=0)
 			{
-				sql="SELECT * FROM package_detail WHERE package_name=? AND package_price=? AND number_of_days=?";
+				sql="SELECT package_name,package_price,number_of_days,"
+						+ "start_date,end_date,hotel_name FROM package_detail "
+						+ "WHERE package_name=? AND package_price=? AND number_of_days=?";
 				pst=connection.prepareStatement(sql);
 				pst.setString(1,countryName);
 				pst.setInt(2,packagePrice);
@@ -440,7 +453,8 @@ public class PackageDao {
 		List<TourPackageDetail> packageDetail=new ArrayList<>();
 		try {
 			connection =ConnectionUtil.getConnection();
-			String sql="SELECT * FROM package_detail WHERE package_name=?";
+			String sql="SELECT package_name,package_price,number_of_days,"
+					+ "start_date,end_date,hotel_name FROM package_detail WHERE package_name=?";
 			pst=connection.prepareStatement(sql);
 			pst.setString(1,countryName);
 			ResultSet rs=pst.executeQuery();

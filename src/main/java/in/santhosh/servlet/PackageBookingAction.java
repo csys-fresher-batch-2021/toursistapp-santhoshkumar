@@ -40,7 +40,7 @@ public class PackageBookingAction extends HttpServlet {
 			if (Booking.bookingPackage(bookingDetail, totalPrice, status, comment)) {
 				response.sendRedirect("FinalBookingPage.jsp");
 			}
-		} catch (ServiceException | NumberFormatException e) {
+		} catch (ServiceException | NumberFormatException| IOException e) {
 			String errorMessage = e.getMessage();
 			response.sendRedirect("BookingDetail.jsp?errorMessage=" + errorMessage);
 		}

@@ -41,7 +41,7 @@ public class BookingPackageAction extends HttpServlet {
 			response.sendRedirect(
 					"BookingDetail.jsp?packageName=" + packageName + "&packagePrice=" + price + "&NumberOfDays=" + days
 							+ "&startDate=" + startDate + "&endDate=" + endDate + "&hotelName=" + hotelName);
-		} catch (ServiceException | NumberFormatException e) {
+		} catch (ServiceException | NumberFormatException |IOException e) {
 			String errorMessage = e.getMessage();
 			response.sendRedirect("ListOfPackages.jsp?errorMessage=" + errorMessage);
 
