@@ -40,7 +40,7 @@ public class DeleteBookingAction extends HttpServlet {
 				String infoMessage = "Cancelled Successfully";
 				response.sendRedirect("UserBookingDetail.jsp?infoMessage=" + infoMessage);
 			}
-		} catch (ServiceException | NumberFormatException e) {
+		} catch (ServiceException | NumberFormatException | IOException e) {
 			String errorMessage = e.getMessage();
 			response.sendRedirect("UserBookingDetail.jsp?errorMessage=" + errorMessage);
 		}

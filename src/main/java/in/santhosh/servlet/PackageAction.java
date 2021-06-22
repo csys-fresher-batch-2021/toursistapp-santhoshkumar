@@ -59,7 +59,7 @@ public class PackageAction extends HttpServlet {
 				String existsMessage = "Package already exists";
 				response.sendRedirect("AddPackage.jsp?existsMessage=" + existsMessage);
 			}
-		} catch (ServiceException | PackageValidationException | NumberFormatException e) {
+		} catch (ServiceException | PackageValidationException | NumberFormatException  |IOException e) {
 			String errorMessage = e.getMessage();
 			response.sendRedirect("AddPackage.jsp?errorMessage=" + errorMessage);
 		}

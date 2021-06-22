@@ -32,7 +32,7 @@ public class AdminLoginAction extends HttpServlet {
 				String errorMessage = "Invalid login credentials";
 				response.sendRedirect("AdminLogin.jsp?errorMessage=" + errorMessage);
 			}
-		} catch (NumberFormatException e) {
+		} catch (NumberFormatException | IOException e) {
 			response.sendRedirect("AdminLogin.jsp?errorMessage=" + e);
 		}
 	}

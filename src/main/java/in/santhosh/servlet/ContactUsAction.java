@@ -60,7 +60,7 @@ public class ContactUsAction extends HttpServlet {
 						+ PACKAGE_PRICE + packagePrice + START_DATE + startDate + END_DATE + endDate + NUMBER_OF_DAYS
 						+ numberOfDays);
 			}
-		} catch (ServiceException | NumberFormatException e) {
+		} catch (ServiceException | NumberFormatException | IOException e) {
 			String errorMessage = e.getMessage();
 			response.sendRedirect("BookingDetail.jsp?message=" + errorMessage);
 

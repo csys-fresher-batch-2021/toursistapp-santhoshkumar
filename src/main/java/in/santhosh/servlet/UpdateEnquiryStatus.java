@@ -17,9 +17,14 @@ public class UpdateEnquiryStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		long mobileNumber=Long.parseLong(request.getParameter("mobileNumber"));
-		ContactDetail.updateEnquiry(mobileNumber);
-		response.sendRedirect("ListOfEnquiry.jsp");
+		try {
+			long mobileNumber=Long.parseLong(request.getParameter("mobileNumber"));
+			ContactDetail.updateEnquiry(mobileNumber);
+			response.sendRedirect("ListOfEnquiry.jsp");
+		} catch (NumberFormatException  | IOException e) {
+			response.sendRedirect("ListOfEnquiry.jsp?errorMessage="+e);
+			
+		} 
 		
 	}
 

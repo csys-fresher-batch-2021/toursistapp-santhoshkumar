@@ -42,11 +42,9 @@ public class UserLoginAction extends HttpServlet {
 				String errorMessage = "Invalid Details";
 				response.sendRedirect("UserLogin.jsp?errorMessage=" + errorMessage);
 			}
-		} catch (ServiceException e) {
+		} catch (ServiceException  | IOException | NumberFormatException e) {
 			String message = e.getMessage();
 			response.sendRedirect("UserLogin.jsp?message=" + message);
-		} catch (NumberFormatException e) {
-			response.sendRedirect("UserLogin.jsp?message=" + e);
 		}
 
 	}

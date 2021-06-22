@@ -29,7 +29,6 @@ public class SearchCountryAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String packageName = request.getParameter("countryName");
-		System.out.println("2"+packageName);
 		HttpSession session = request.getSession();
 		session.setAttribute("SEARCHCOUNTRY", packageName);
 		try {

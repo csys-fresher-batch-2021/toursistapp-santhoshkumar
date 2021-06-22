@@ -48,7 +48,7 @@ public class RegistrationAction extends HttpServlet {
 				String errorMessage = "Password and Retype password not matched";
 				response.sendRedirect(REGISTRATION_JSP_ERROR_MESSAGE + errorMessage);
 			}
-		} catch (ServiceException | NumberFormatException e) {
+		} catch (ServiceException | NumberFormatException | IOException e) {
 			String errorMessage = e.getMessage();
 			response.sendRedirect(REGISTRATION_JSP_ERROR_MESSAGE + errorMessage);
 			e.printStackTrace();

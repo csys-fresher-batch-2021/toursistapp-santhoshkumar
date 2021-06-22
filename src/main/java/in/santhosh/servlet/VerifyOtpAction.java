@@ -27,7 +27,7 @@ public class VerifyOtpAction extends HttpServlet {
 				String errorMessage = "Entered otp is incorrect";
 				response.sendRedirect("ForgotPassword.jsp?errorMessage=" + errorMessage);
 			}
-		} catch (NumberFormatException e) {
+		} catch (NumberFormatException  | IOException e) {
 			response.sendRedirect("ForgotPassword.jsp?errorMessage=" + e);
 
 		}

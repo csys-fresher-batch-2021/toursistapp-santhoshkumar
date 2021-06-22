@@ -26,7 +26,7 @@ public class LoginDao {
 		PreparedStatement pst = null;
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM user_detail WHERE mobile_number=? AND user_password=?";
+			String sql = "SELECT mobile_number FROM user_detail WHERE mobile_number=? AND user_password=?";
 			pst = connection.prepareStatement(sql);
 			pst.setLong(1, mobileNumber);
 			pst.setString(2, password);
@@ -57,7 +57,8 @@ public class LoginDao {
 		List<UserDetail> details = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT* FROM user_detail WHERE mobile_number=?";
+			String sql = "SELECT user_id,name,age,gender,mobile_number,user_password,"
+					+ "retype_password FROM user_detail WHERE mobile_number=?";
 			pst = connection.prepareStatement(sql);
 			pst.setLong(1, mobileNumber);
 			ResultSet rs = pst.executeQuery();

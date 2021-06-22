@@ -61,7 +61,8 @@ public class FlightDao {
 		List<FlightDetail> flightList = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM flight_detail";
+			String sql = "SELECT country_name,flight_name,source,destination,departure_time,"
+					+ "arrival_time,status,journey_date FROM flight_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
@@ -131,7 +132,8 @@ public class FlightDao {
 		List<FlightDetail> flight = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM flight_detail";
+			String sql = "SELECT country_name,flight_name,source,destination,departure_time,"
+					+ "arrival_time,status,journey_date FROM flight_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {

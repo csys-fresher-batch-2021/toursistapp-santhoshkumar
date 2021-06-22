@@ -92,7 +92,8 @@ public class ContactUsDao {
 		List<ContactUsDetails> userSelectedDetails = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT* FROM contact_detail";
+			String sql = "SELECT name,mobile_number,country_name,package_price,start_date,"
+					+ "end_date,status FROM contact_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {

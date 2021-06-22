@@ -58,7 +58,8 @@ public class SalesReportDao {
 		List<BookingDetail> details = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM booking_detail WHERE package_name=?";
+			String sql = "SELECT user_id,package_name,package_price,number_of_days,start_date,"
+					+ "end_date,number_of_persons,total_price FROM booking_detail WHERE package_name=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, countryName);
 			ResultSet rs = pst.executeQuery();

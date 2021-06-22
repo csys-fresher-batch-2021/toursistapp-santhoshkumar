@@ -74,7 +74,8 @@ public class BookingDao {
 		List<BookingDetail> details = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT* FROM booking_detail WHERE user_id=?";
+			String sql = "SELECT user_id,package_name,package_price,number_of_days,start_date,end_date"
+					+ ",number_of_persons,total_price,status,comment FROM booking_detail WHERE user_id=?";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
@@ -111,9 +112,10 @@ public class BookingDao {
 		Connection connection = null;
 		PreparedStatement pst = null;
 		List<BookingDetail> allBookingdetails = new ArrayList<>();
-		try {
+		try { 
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT* FROM booking_detail";
+			String sql = "SELECT user_id,package_name,package_price,number_of_days,start_date,end_date,"
+					+ "number_of_persons,total_price,status,comment FROM booking_detail";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
@@ -217,7 +219,8 @@ public class BookingDao {
 		List<BookingDetail> allCancelledBookingdetails = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
-			String sql = "SELECT* FROM cancelled_booking";
+			String sql = "SELECT user_id,package_name,package_price,number_of_days,start_date,end_date,"
+					+ "number_of_persons,total_price,status FROM cancelled_booking";
 			pst = connection.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
